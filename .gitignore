@@ -1,4 +1,5 @@
 venv/
+learning/
 
 *.pyc
 __pycache__/
