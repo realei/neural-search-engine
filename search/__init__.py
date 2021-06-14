@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 
+from . import image_query
 
 def create_app(test_config=None):
     # create and configure the app
@@ -16,7 +17,7 @@ def create_app(test_config=None):
         app.config.from_pyfile('config.py', silent=True)
     else:
         # load the test config if passed in
-        app.config.from_mapping(test_config)
+        app.config.from_apping(test_config)
 
     # ensure the instance folder exists
     try:
@@ -24,9 +25,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    app.register_blueprint(image_query.bp)
 
     return app 

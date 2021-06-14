@@ -3,6 +3,7 @@ learning/
 flaskr/
 
 *.pyc
+*.swp
 __pycache__/
 
 instance/
