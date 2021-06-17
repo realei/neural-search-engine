@@ -5,6 +5,10 @@ from flask import (
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 
+import numpy as np
+from PIL import Image
+
+
 bp = Blueprint('image_query', __name__, url_prefix='/image')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -30,5 +34,12 @@ def query():
             filename = secure_filename(file.filename)
             #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('download_file', name=filename))
+
+        img = Image.open(file)
+        img = np.array(img)
+
+        #img = cv2.imread(file)
+        print(f"\n Uploaded file -> img np array after request: {type(img)} \n")
+        print(f"\n shape of the image is: {img.shape} \n")
 
         return(filename)
