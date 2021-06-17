@@ -1,3 +1,5 @@
+import torch
+import sys
 from flask import (
     Blueprint, flash, g, redirect, request, url_for
 )
@@ -7,6 +9,9 @@ from werkzeug.utils import secure_filename
 
 import numpy as np
 from PIL import Image
+
+sys.path.append("..")
+from engine.modules import normalize_input, ImageModel, CFG
 
 
 bp = Blueprint('image_query', __name__, url_prefix='/image')
@@ -38,8 +43,19 @@ def query():
         img = Image.open(file)
         img = np.array(img)
 
-        #img = cv2.imread(file)
-        print(f"\n Uploaded file -> img np array after request: {type(img)} \n")
-        print(f"\n shape of the image is: {img.shape} \n")
+        normd_img = normalize_input(img)
+
+        normd_img = normd_img.unsqueeze(1)
+
+        model = ImageModel(model_name=CFG.model_name, pretrained=True)
+        model.eval
+        model.to(CFG.device)
+
+        label = None # Inference dont need label
+        feat = model(normd_img, label)
+        img_embeddings = feat.detach().cpu()
+
+        print(f"\n type of embeddings: {type(img_embeddings)}")
+        print(f"\n shape of embeddings: {img_embeddings.shape} \n")
 
         return(filename)

@@ -3,11 +3,11 @@ Deep Learning modules for feature extracting
 """
 
 import cv2
+import math
+import timm
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torchvision
-import torchvision.transforms as transforms
 
 from .normalizers import image_normalizer
 
@@ -23,7 +23,7 @@ def normalize_input(img, normalizer=None):
     if not normalizer:
         normalizer = image_normalizer
 
-    res = normalizer(img=img)
+    res = normalizer(image=img)
 
     return torch.tensor(img).float()
 
@@ -34,7 +34,7 @@ class CFG:
     batch_size = 12
     seed = 2020
 
-    device = 'cuda'
+    device = 'cpu'
     classes = 11014
 
     model_name = 'efficientnet_b3'
@@ -85,7 +85,7 @@ class ArcMarginProduct(nn.Module):
         return output
 
 
-class ToorbeeProductModel(nn.Module):
+class ImageModel(nn.Module):
 
     def __init__(
         self,
@@ -98,7 +98,7 @@ class ToorbeeProductModel(nn.Module):
         pretrained = True):
 
 
-        super(ToorbeeProductModel,self).__init__()
+        super(ImageModel,self).__init__()
         print(f'Building Model Backbone for {model_name} model')
 
         self.backbone = timm.create_model(model_name, pretrained=pretrained)
