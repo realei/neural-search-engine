@@ -38,7 +38,6 @@ class CFG:
     classes = 11014
 
     model_name = 'efficientnet_b3'
-    #model_path = '../input/toorbee-pytorch-models/arcface_512x512_eff_b5_.pt'
 
     scale = 30
     margin = 0.5
