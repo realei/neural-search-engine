@@ -4,6 +4,7 @@ flaskr/
 
 *.pyc
 *.swp
+*.jpg
 __pycache__/
 
 instance/

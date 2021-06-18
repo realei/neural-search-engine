@@ -1,5 +1,6 @@
 import torch
 import sys
+import cv2
 from flask import (
     Blueprint, flash, g, redirect, request, url_for
 )
@@ -40,22 +41,23 @@ def query():
             #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('download_file', name=filename))
 
-        img = Image.open(file)
+        img = Image.open(file)  # PIL by default is RGB
         img = np.array(img)
+        
+        img = img.transpose(2,0,1)
 
         normd_img = normalize_input(img)
-
-        normd_img = normd_img.unsqueeze(1)
+        normd_img = np.expand_dims(normd_img, axis=0)
 
         model = ImageModel(model_name=CFG.model_name, pretrained=True)
         model.eval
         model.to(CFG.device)
 
-        label = None # Inference dont need label
+        label = 1 # Inference dont need label
         feat = model(normd_img, label)
         img_embeddings = feat.detach().cpu()
 
         print(f"\n type of embeddings: {type(img_embeddings)}")
-        print(f"\n shape of embeddings: {img_embeddings.shape} \n")
+        print(f"\n shape of embeddings: {img_embeddings.size} \n")
 
         return(filename)
