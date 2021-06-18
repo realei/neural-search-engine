@@ -58,7 +58,8 @@ def query():
         label = torch.tensor(0).int()
         feat = model(normd_img, label)
         img_embeddings = feat.detach().cpu()
-
+        
+        #TBD: to be deleted after indexing endpoint finished
         print(f"\n type of embeddings: {type(img_embeddings)}")
         print(f"\n len of embeddings: {len(img_embeddings[0])} \n")
         print(f"\n len of embeddings: {img_embeddings}\n")
