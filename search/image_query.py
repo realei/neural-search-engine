@@ -48,16 +48,19 @@ def query():
 
         normd_img = normalize_input(img)
         normd_img = np.expand_dims(normd_img, axis=0)
+        normd_img = torch.tensor(normd_img).float()
 
         model = ImageModel(model_name=CFG.model_name, pretrained=True)
         model.eval
         model.to(CFG.device)
 
-        label = 1 # Inference dont need label
+        # Inference dont need label
+        label = torch.tensor(0).int()
         feat = model(normd_img, label)
         img_embeddings = feat.detach().cpu()
 
         print(f"\n type of embeddings: {type(img_embeddings)}")
-        print(f"\n shape of embeddings: {img_embeddings.size} \n")
+        print(f"\n len of embeddings: {len(img_embeddings[0])} \n")
+        print(f"\n len of embeddings: {img_embeddings}\n")
 
         return(filename)
