@@ -65,3 +65,8 @@ def query():
         print(f"\n len of embeddings: {img_embeddings}\n")
 
         return(filename)
+
+
+@bp.route('/index', methods=['GET']):
+def index():
+    if request.method == 'GET':

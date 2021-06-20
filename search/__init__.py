@@ -4,6 +4,13 @@ from flask import Flask
 
 from . import image_query
 
+PHOTOS = '../photos'
+EMBEDDINGS = '../embeddings'
+
+app.config['PHOTOS'] = PHOTOS
+app.config['EMBEDDINGS'] = EMBEDDINGS 
+
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
