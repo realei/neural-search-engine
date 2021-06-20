@@ -5,7 +5,7 @@ from flask import Flask
 from . import image_query
 
 PHOTOS = '../photos'
-EMBEDDINGS = '../embeddings'
+EMBEDDINGS = '../embeddings/embeddings.npy'
 
 app.config['PHOTOS'] = PHOTOS
 app.config['EMBEDDINGS'] = EMBEDDINGS 

@@ -1,8 +1,9 @@
 import torch
+import faiss
 import sys
 import cv2
 from flask import (
-    Blueprint, flash, g, redirect, request, url_for
+    Blueprint, flash, g, redirect, request, url_for, current_app
 )
 
 from werkzeug.exceptions import abort
@@ -58,15 +59,29 @@ def query():
         label = torch.tensor(0).int()
         feat = model(normd_img, label)
         img_embeddings = feat.detach().cpu()
-        
+
         #TBD: to be deleted after indexing endpoint finished
         print(f"\n type of embeddings: {type(img_embeddings)}")
         print(f"\n len of embeddings: {len(img_embeddings[0])} \n")
         print(f"\n len of embeddings: {img_embeddings}\n")
 
-        return(filename)
+        #Build the index
+        index = faiss.IndexFlatL2(d)
+
+        embeddings = np.load(current_app.config['EMBEDDINGS'])
+
+        index.add(embeddings)
+
+        top_k = 10
+
+        _, topk_indexes = index.search(img_embeddings, top_k)
+
+        print(f"\nTop 10 indexes are: {top_kindexes}\n")
+        
+        return(topk_indexes)
 
 
-@bp.route('/index', methods=['GET']):
-def index():
+@bp.route('/index/<int:top_k>', methods=['GET']):
+def index(top_k):
     if request.method == 'GET':
+        pass
