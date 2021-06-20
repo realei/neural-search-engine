@@ -60,28 +60,31 @@ def query():
         feat = model(normd_img, label)
         img_embeddings = feat.detach().cpu()
 
+        #tensor --> np
+        img_embeddings = img_embeddings.numpy()
+
         #TBD: to be deleted after indexing endpoint finished
         print(f"\n type of embeddings: {type(img_embeddings)}")
         print(f"\n len of embeddings: {len(img_embeddings[0])} \n")
         print(f"\n len of embeddings: {img_embeddings}\n")
 
+        embeddings = np.load(current_app.config['EMBEDDINGS'])
+        _, d = embeddings.shape
+
         #Build the index
         index = faiss.IndexFlatL2(d)
-
-        embeddings = np.load(current_app.config['EMBEDDINGS'])
-
         index.add(embeddings)
 
         top_k = 10
 
         _, topk_indexes = index.search(img_embeddings, top_k)
 
-        print(f"\nTop 10 indexes are: {top_kindexes}\n")
+        print(f"\nTop 10 indexes are: {list(topk_indexes[0])}\n")
         
-        return(topk_indexes)
+        return(f"Top 10 indexes are: {list(topk_indexes[0])}")
 
 
-@bp.route('/index/<int:top_k>', methods=['GET']):
+@bp.route('/index/<int:top_k>', methods=['GET'])
 def index(top_k):
     if request.method == 'GET':
         pass

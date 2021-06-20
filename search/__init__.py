@@ -4,20 +4,23 @@ from flask import Flask
 
 from . import image_query
 
-PHOTOS = '../photos'
-EMBEDDINGS = '../embeddings/embeddings.npy'
-
-app.config['PHOTOS'] = PHOTOS
-app.config['EMBEDDINGS'] = EMBEDDINGS 
-
-
 def create_app(test_config=None):
+    
+    APP_DIR = os.path.dirname(os.path.abspath(__file__))
+    print(APP_DIR)
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'search.sqlite'),
     )
+
+    #app.config['PHOTOS']
+    app.config['EMBEDDINGS'] = os.path.join(
+        app.instance_path,
+        "embeddings.npy"
+        )
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
