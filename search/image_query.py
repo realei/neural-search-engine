@@ -44,20 +44,35 @@ def query():
 
         img = Image.open(file)  # PIL by default is RGB
         img = np.array(img)
-        
-        img = img.transpose(2,0,1)
+        #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-        normd_img = normalize_input(img)
+        print(f"\n After PIL->np.array shape is: {img.shape} \n")
+
+        img_t = normalize_input(img)
+        normd_img = img_t["image"]
+
+        normd_img = normd_img.astype(np.float32)
+        normd_img = normd_img.transpose(2,0,1)
+
+        print(f"shape of normd_img: {normd_img.shape}")
         normd_img = np.expand_dims(normd_img, axis=0)
         normd_img = torch.tensor(normd_img).float()
+
+        print(f"\n value of normd_img: {normd_img} \n")
+        print(normd_img.shape)
+
+        #normd_img = normd_img.transpose(2,0,1)
 
         model = ImageModel(model_name=CFG.model_name, pretrained=True)
         model.eval
         model.to(CFG.device)
 
         # Inference dont need label
-        label = torch.tensor(0).int()
-        feat = model(normd_img, label)
+        label = torch.tensor(1).int()
+
+        with torch.no_grad():
+            feat = model(normd_img, label)
+        
         img_embeddings = feat.detach().cpu()
 
         #tensor --> np
@@ -66,7 +81,8 @@ def query():
         #TBD: to be deleted after indexing endpoint finished
         print(f"\n type of embeddings: {type(img_embeddings)}")
         print(f"\n len of embeddings: {len(img_embeddings[0])} \n")
-        print(f"\n len of embeddings: {img_embeddings}\n")
+        print(f"\n value of embeddings: {img_embeddings}\n")
+        print(f"\n shape of embeddings: {img_embeddings.shape}\n")
 
         embeddings = np.load(current_app.config['EMBEDDINGS'])
         _, d = embeddings.shape
