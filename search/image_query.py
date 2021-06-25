@@ -66,7 +66,7 @@ def query():
         #normd_img = normd_img.transpose(2,0,1)
 
         model = ImageModel(model_name=CFG.model_name, pretrained=True)
-        model.eval
+        model.eval()
         model.to(CFG.device)
 
         # Inference dont need label
@@ -74,11 +74,8 @@ def query():
 
         with torch.no_grad():
             feat = model(normd_img, label)
-        
-        img_embeddings = feat.detach().cpu()
+            img_embeddings = feat.detach().cpu().numpy()
 
-        #tensor --> np
-        img_embeddings = img_embeddings.numpy()
 
         #TBD: to be deleted after indexing endpoint finished
         print(f"\n type of embeddings: {type(img_embeddings)}")

@@ -27,7 +27,7 @@ def normalize_input(img, normalizer=None):
 class CFG:
 
     img_size = 512
-    batch_size = 12
+    batch_size = 1
     seed = 2020
 
     device = 'cpu'

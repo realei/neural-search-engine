@@ -6,6 +6,7 @@ photos/*.jpg
 embeddings/*.npy
 *.pyc
 *.swp
+*.swo
 *.jpg
 __pycache__/
 
