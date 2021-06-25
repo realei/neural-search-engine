@@ -4,13 +4,27 @@ from flask import Flask
 
 from . import image_query
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLD = 'uploads'
+UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_FOLD)
+
 def create_app(test_config=None):
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'search.sqlite'),
     )
+
+    #app.config['PHOTOS']
+    app.config['EMBEDDINGS'] = os.path.join(
+        app.instance_path,
+        "embeddings.npy"
+        )
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    print(app.config['UPLOAD_FOLDER'])
+    
 
     if test_config is None:
         # load the instance config, if it exists, when not testing

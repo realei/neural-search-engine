@@ -17,21 +17,17 @@ def normalize_input(img, normalizer=None):
     :param img: nd.array of an image
     :param normalizer: func type
     """
-    
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     if not normalizer:
         normalizer = image_normalizer
 
-    res = normalizer(image=img)
-
-    return torch.tensor(img).float()
+    return normalizer(image=img) 
 
 
 class CFG:
 
     img_size = 512
-    batch_size = 12
+    batch_size = 1
     seed = 2020
 
     device = 'cpu'
