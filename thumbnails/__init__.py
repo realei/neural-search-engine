@@ -20,7 +20,7 @@ def create_app(test_config=None):
         app.instance_path,
         "embeddings.npy"
         )
-    app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
+    app.config['IMAGES_FOLDER'] = IMAGE_FOLDER
     
 
     if test_config is None:
