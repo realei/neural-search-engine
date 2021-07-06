@@ -1,23 +1,27 @@
 import sys
 import os
 from flask import (
-    Blueprint, flash, g, redirect, request, url_for, current_app
+    Blueprint, request, current_app, send_file
 )
 
 from werkzeug.exceptions import abort
-from werkzeug.utils import secure_filename
 
+.config['IMAGES_FOLDER']
 
 bp = Blueprint('thumbnails', __name__, url_prefix='/medias')
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+@bp.route('/thumbnails/<int:image_id>', methods=['GET'])
+def thumbnails(image_id):
+    """
+    http://stage.neuralsearch.com/thumbnails/1
+    """
+    
+    file_type = "jpg"
+    filename = str(image_id) + '.' + file_type
 
-@bp.route('/thumbnails', methods=['GET'])
-def thumbnails():
-    if request.method == 'GET':
+    return send_file(
+        os.path.join(
+            current_app.config['IMAGES_FOLDER'],
+            filename
+            ))
 
-
-    return(f"Top 10 indexes are: {list(topk_indexes[0])}")
