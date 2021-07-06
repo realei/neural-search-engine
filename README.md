@@ -8,3 +8,14 @@ During the covid19 pandemic, unfortunately, the tourist industry has suffered gr
 
 Cognitive AI Search Engine aims to help tech companies to empower AI with a cloud-native opensource framework. The Engine mainly helps the company to deal with unstructured data, such as a photo, a piece of audio, text, sensor data, etc/and so on. The Cognitive AI Search Engine can/is able to help users to automate the entire pipeline of Machine Learning training, and Inferencing. The current release is an MVP (Minimum Viable Product) version, which is mainly focused on the inferencing part to show the possibility of this AI solution.
 After the first time release, the result shows the MVP version can help users to find “top K”(K=10) similar photos in around 500 milliseconds within/using/from 100K images data sets, and the inference part only needs CPU. The MVP is already delivered as a RESTful API with Flask and implemented with Docker and Kubernetes. It will first normalize the image data, and extract embeddings (dense vectors), and do the clustering in the sphere of embeddings and find its top K neighbors. Everything happens in only milliseconds, normalization, deep learning feature extraction, reliance distance calculation, clustering......
+
+## How to use Local Dev
+
+1. create virtual env
+'virtualenv -p python3 venv'
+
+2. activate venv
+`source thumbnails-env/bin/activate`
+
+3. deactivate venv
+'deactivate'
