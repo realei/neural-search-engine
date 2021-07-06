@@ -1,5 +1,8 @@
 venv/
+thumbnails-env/
+
 learning/
+thumbnails/images/
 flaskr/
 
 photos/*.jpg
