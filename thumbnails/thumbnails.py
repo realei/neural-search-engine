@@ -4,10 +4,6 @@ from flask import (
     Blueprint, request, current_app, send_file
 )
 
-from werkzeug.exceptions import abort
-
-.config['IMAGES_FOLDER']
-
 bp = Blueprint('thumbnails', __name__, url_prefix='/medias')
 
 @bp.route('/thumbnails/<int:image_id>', methods=['GET'])
@@ -24,4 +20,3 @@ def thumbnails(image_id):
             current_app.config['IMAGES_FOLDER'],
             filename
             ))
-

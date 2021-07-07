@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from . import thumbnails
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 IMAGE_FOLD = 'images'
@@ -12,14 +13,8 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'thumbnails.sqlite'),
     )
 
-    #app.config['PHOTOS']
-    app.config['EMBEDDINGS'] = os.path.join(
-        app.instance_path,
-        "embeddings.npy"
-        )
     app.config['IMAGES_FOLDER'] = IMAGE_FOLDER
     
 
@@ -30,11 +25,6 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_apping(test_config)
 
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
 
     app.register_blueprint(thumbnails.bp)
 
