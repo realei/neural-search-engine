@@ -2,6 +2,10 @@
 
 This is a frontend project build for Neural-Search-Engine for MVP's Demo onlhy
 
+This project is my first React Project which is under the guidence of Brian Holt's React V6 course from [FrontendMasters](https://frontendmasters.com/)
+
+[Here](https://btholt.github.io/complete-intro-to-react-v6/) is Brian Holt's React course blog.
+
 # React Configuration
 
 ## JavaScript Tools
