@@ -1,0 +1,12 @@
+{
+  "name": "ai-search",
+  "version": "1.0.0",
+  "description": "This is a frontend project build for Neural-Search-Engine for MVP's Demo onlhy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
