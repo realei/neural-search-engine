@@ -1,6 +1,6 @@
 venv/
 thumbnails-env/
-frontend/search-app/node_modules/
+ai-search/node_modules/
 
 learning/
 thumbnails/images/
