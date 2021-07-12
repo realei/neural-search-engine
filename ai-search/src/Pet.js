@@ -1,3 +1,5 @@
+/* global React*/
+
 // import React from "react";
 
 const Pet = (props) => {

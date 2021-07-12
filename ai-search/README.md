@@ -77,4 +77,32 @@ ESLine and Prettier can both worry about spacing ..., you definitely only want p
 
   For example, Airbnb config, adopt the standard config, there's several of them.
 
+  At the init stage of AI-Search, we just use eslint recommended. Which is a pretty lacks but still good configurateion for eslint.
+
 - Creste `.eslintrc.json`
+
+  The **order** here is significant, you need to put the **first one** as **eslint recommended**, this is going to turn on a bunce of options.
+  This is also goint to turn on like _whitespace rules_, and we need to _turn off these rules_ and that's what the **prettier config** does.
+
+  The **\*prettier config** doesn't add any rules or doesn't know turn on any new features of the essence, it actually just turns off features it checks for.
+
+  We dont have `plugins` now.
+
+  `parserOptions`
+
+  (1) We're going to be working with **ECMA**. ecmaVersion is 2021.
+
+  (2) `sourceType` -- "module" this is just telling you like am I doing commin js, am I doing like browser stuff? We're going to be using **ES modules**, so that's where that comes from.
+
+  (3) We want `ecmaFeatures` and we're gonna be using JSX here.
+
+  (4) And then underneath that we're going to have what environments we're working in, _es6_, _browser_. This could be like map or weak map or set like those are like those Globals that it'sexpecting.
+
+- Add a new _script_ into _package.json_
+
+  `"lint": "eslint \"src/**/*.{js, jsx}\" --quiet"`
+  The reason why we do _--quiet_ is eslint can be has a lot of stuff that can come out of it, and for the most part we don't need all of it. We just want know something is wrong. if you remove _--quiet_, it will show you all the verbose output.
+
+- Run it with command `npm run lint`
+
+- Install the extension for VS code

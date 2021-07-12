@@ -4,7 +4,8 @@
   "description": "This is a frontend project build for Neural-Search-Engine for MVP's Demo onlhy",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"src/**/*.{js, jsx}\""
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "keywords": [],
   "author": "",
