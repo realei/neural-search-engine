@@ -134,3 +134,24 @@ ESLine and Prettier can both worry about spacing ..., you definitely only want p
   `num run lint`
 
   `npm run dev` --- THis is goint to start a localhost sever
+
+5. Babel
+
+   **Babel** is a transplier tool(not a complier). If you are using Parcel and when you have to modify Babel you can just drop in the Babel RC file, and Parcel will automatically read that for you & change how your Babel is working.
+
+- create `.babelrc`
+  It is kind of a mess to configure Babel, but we have `presets` which is a list of presets that we have in the `.babelrc`. This will be getting merged with the ones that parcel has. A parcel has other presets that it's putting in there for you, like one called 'M', which is very important.
+
+- Install
+
+  `npm install -D @babel/core@7.12.16 @babel/preset-react@7.12.13`
+
+  So we have to give it the node modules that it's going to use to do that translation.
+
+- Config `package.json`
+
+  double check first for the install step
+
+  **Note**: dont ship the ".map" files into production. The .map files reference to the source files for dev and debug puropse, they are called "source maps".
+
+  Create a **"browserslist" proterty**. This is how you identify to babble and parcel, I'm targeting these browsers. If you find out more about that, you cna just go to "browserslist.dev".
