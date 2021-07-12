@@ -6,6 +6,8 @@ This project is my first React Project which is under the guidence of Brian Holt
 
 [Here](https://btholt.github.io/complete-intro-to-react-v6/) is Brian Holt's React course blog.
 
+Versions: react@17.0.1 react-dom@17.0.1
+
 # React Configuration
 
 ## JavaScript Tools
@@ -106,3 +108,29 @@ ESLine and Prettier can both worry about spacing ..., you definitely only want p
 - Run it with command `npm run lint`
 
 - Install the extension for VS code
+
+4. Parcel
+
+   **Parcel** is a really awedome tool, it's **a bundler for javascript**.
+
+   Parcel is zero configuration, we're not even going to create a configuration file for Parcel because it can figure everything out on it's own.
+
+- Install Parcel
+
+  `npm install -D parcel@1.12.3`
+
+  Note: There's actually a problem with 1.12.4, while 1.12.3 does have some security vulnerabilities. _Parcel 2_ could be considered for future production env.
+
+- Update `scripts` in `package.json`
+
+  `"dev": "parcel src/index.html",` We no longer need the <script> tags, because we are going to bundle Reactg directly into our application and not rely on unpackage anymore.
+
+- Install dependencies
+
+  `npm install react@17.0.1 react-dom@17.0.1"
+
+- Bring up Dev version of Reacgt app
+
+  `num run lint`
+
+  `npm run dev` --- THis is goint to start a localhost sever

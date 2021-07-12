@@ -1,6 +1,7 @@
 venv/
 thumbnails-env/
 ai-search/node_modules/
+ai-search/.cache/
 
 learning/
 thumbnails/images/
