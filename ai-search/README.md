@@ -62,3 +62,19 @@ This project is my first React Project which is under the guidence of Brian Holt
 
   What this will do is if you put a prettier file inside of a project, the prettier knows "Okay! this is now when I need to run".
   Otherwise it will run on every file that you ever open in VS code, which is probably not like what you want.
+
+3. ESLint
+
+ESLint allows you to have opinions of enforce your code, where jproduce much more like syntacitcally. It'slike putting commas in the right places and single quotes or double quotes, spacing. ESLint is going to be kind of more higher lvevel more opinionated. It is going to be like hey we don't use arrow functions here or we only use single quotes. In these kinds of contexts or those kind of things, things we are enforcing like your opinion on someone else.
+
+ESLine and Prettier can both worry about spacing ..., you definitely only want prettier to worry about that and ESLint to worry about **more opinionated things**.
+
+- Install ESLint
+
+  `npm install -D eslint@7.18.0 eslint-config-prettier@8.1.0`
+
+  This is a pretty un-opinionated version of eslintconfig. You can make eslint config very opinionated.
+
+  For example, Airbnb config, adopt the standard config, there's several of them.
+
+- Creste `.eslintrc.json`
