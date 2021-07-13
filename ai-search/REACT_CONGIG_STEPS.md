@@ -67,9 +67,9 @@ Versions: react@17.0.1 react-dom@17.0.1
 
 3. ESLint
 
-  ESLint allows you to have opinions of enforce your code, where jproduce much more like syntacitcally. It'slike putting commas in the right places and single quotes or double quotes, spacing. ESLint is going to be kind of more higher lvevel more opinionated. It is going to be like hey we don't use arrow functions here or we only use single quotes. In these kinds of contexts or those kind of things, things we are enforcing like your opinion on someone else.
+ESLint allows you to have opinions of enforce your code, where jproduce much more like syntacitcally. It'slike putting commas in the right places and single quotes or double quotes, spacing. ESLint is going to be kind of more higher lvevel more opinionated. It is going to be like hey we don't use arrow functions here or we only use single quotes. In these kinds of contexts or those kind of things, things we are enforcing like your opinion on someone else.
 
-  ESLine and Prettier can both worry about spacing ..., you definitely only want prettier to worry about that and ESLint to worry about **more opinionated things**.
+ESLine and Prettier can both worry about spacing ..., you definitely only want prettier to worry about that and ESLint to worry about **more opinionated things**.
 
 - Install ESLint
 
@@ -108,6 +108,8 @@ Versions: react@17.0.1 react-dom@17.0.1
 - Run it with command `npm run lint`
 
 - Install the extension for VS code
+
+_ESLint out of the box doesn't know how to understand React, we're gonna have to give us some additional tools to understand React._
 
 4. Parcel
 
@@ -155,3 +157,7 @@ Versions: react@17.0.1 react-dom@17.0.1
   **Note**: dont ship the ".map" files into production. The .map files reference to the source files for dev and debug puropse, they are called "source maps".
 
   Create a **"browserslist" proterty**. This is how you identify to babble and parcel, I'm targeting these browsers. If you find out more about that, you cna just go to "browserslist.dev".
+
+# About JSX
+
+JSX code gets thrown through Babel and Parcel and outputs `React.createElement(...` stuff. JSX does not do very much for you, it just taking these kind of HTML, XML..., and outputting that as JavaScript that a browser can understand.
