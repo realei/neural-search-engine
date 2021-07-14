@@ -65,3 +65,5 @@ This is another set of rules that specifically applies to react hooks.
 2. update "extends" i `.eslintrc.json`
 
 This add like another layer of checking jsut to make sure that we don't have bugs with hooks, because they do have some _peculiar behavior habits_.
+
+# useEffect & Fectching API Data

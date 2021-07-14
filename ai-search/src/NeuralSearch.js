@@ -1,6 +1,13 @@
 import { useState } from 'react';
 
-
+const ImageUpload = () => {
+  return (
+    <form>
+      <input type="file" id="myFile" name="filename"></input>
+      <input type="Submit"></input>
+    </form>
+  )
+}
 
 const NeuralSearch = () => {
   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -29,28 +36,9 @@ const NeuralSearch = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="search-params">
-        {image.preview ? (
-          <img src={image.preview} alt="dummy" width="300" height="300" />
-        ) : (
-          <>
-            <span className="fa-stack fa-2x mt-3 mb-2">
-              <i className="fas fa-circle fa-stack-2x" />
-              <i className="fas fa-store fa-stack-1x fa-inverse" />
-            </span>
-            <h5 className="text-center">Upload your photo</h5>
-          </>
-        )}
-      </label>
-      <input
-        type="file"
-        id="upload-button"
-        style={{ display: "none" }}
-        onChange={handleChange}
-      />
-      <br />
-      <button onClick={handleUpload}>Upload</button>
+    <div className="topnav">
+      <a className="active" href="#home">Nerual Search</a>
+      <ImageUpload />
     </div>
   );
 }
