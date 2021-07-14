@@ -66,4 +66,8 @@ This is another set of rules that specifically applies to react hooks.
 
 This add like another layer of checking jsut to make sure that we don't have bugs with hooks, because they do have some _peculiar behavior habits_.
 
+**The Number 1 hook that we are going to use , by far is `useState`**, it's just the most useful hook that we have.
+
 # useEffect & Fectching API Data
+
+**useEffect** is basically allows your to have side effects to your application. So for example, in this partucular search-params, I wanna go out to my API, and I wanna fetch the list of the breeds that are available per animal. For example, if I select "dog" as the "Animal" and I want find out what _breeds_ of dogs are available, and we can do this through something called an **effect**.

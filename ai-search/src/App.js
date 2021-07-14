@@ -1,7 +1,6 @@
-import ReactDOM from 'react-dom';
-import SearchParams from './SearchParams';
-import NeuralSearch from './NeuralSearch';
-
+import ReactDOM from "react-dom";
+import SearchParams from "./SearchParams";
+import NeuralSearch from "./NeuralSearch";
 
 const App = () => {
   return (
@@ -11,7 +10,7 @@ const App = () => {
       <br></br>
       <NeuralSearch />
     </div>
-    )
-}
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
