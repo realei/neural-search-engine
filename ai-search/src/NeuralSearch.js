@@ -1,47 +1,41 @@
-import { useState } from "react";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
-const ImageUpload = () => {
-  return (
-    <form>
-      <input type="file" id="myFile" name="filename"></input>
-      <input type="Submit"></input>
-    </form>
-  );
-};
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: "none",
+  },
+}));
 
 const NeuralSearch = () => {
-  const [image, setImage] = useState({ preview: "", raw: "" });
-
-  const handleChange = (e) => {
-    if (e.target.files.length) {
-      setImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
-      });
-    }
-  };
-
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", image.raw);
-
-    await fetch("YOUR_URL", {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: formData,
-    });
-  };
+  const classes = useStyles();
 
   return (
-    <div className="topnav">
-      <a className="active" href="#home">
-        Nerual Search
-      </a>
-      <ImageUpload />
-    </div>
+    <form className={classes.root} noValidate autoComplete="off">
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="icon-button-file"
+        type="file"
+      />
+      <label htmlFor="icon-button-file">
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="span"
+        >
+          <PhotoCamera />
+        </IconButton>
+      </label>
+    </form>
   );
 };
 
