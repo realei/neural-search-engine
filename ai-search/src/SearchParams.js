@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useBreedList from './useBreedList'
+import useBreedList from "./useBreedList";
 import Pet from "./Pet";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
@@ -9,7 +9,8 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
-  const [breedList] = useBreedList(animal);
+  const [breeds] = useBreedList(animal);
+  // const breeds = [];
 
   useEffect(() => {
     // This is where we are gonna put all of our async code
