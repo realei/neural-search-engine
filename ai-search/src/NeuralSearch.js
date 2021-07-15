@@ -19,7 +19,7 @@ const NeuralSearch = () => {
   const classes = useStyles();
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <div className={classes.root}>
       <input
         accept="image/*"
         className={classes.input}
@@ -35,7 +35,7 @@ const NeuralSearch = () => {
           <PhotoCamera />
         </IconButton>
       </label>
-    </form>
+    </div>
   );
 };
 
