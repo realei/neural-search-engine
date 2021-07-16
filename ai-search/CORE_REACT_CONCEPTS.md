@@ -73,3 +73,7 @@ This add like another layer of checking jsut to make sure that we don't have bug
 Data fetching, setting up a subscription, and manually changing the DOM in React components are all examples of side effects. Whether or not you’re used to calling these operations **“side effects” (or just “effects”)**. There are **two common kinds of side effects** in React components: those that **don’t require cleanup**, and **those that do**.
 
 **useEffect** is basically allows your to have side effects to your application. So for example, in this partucular search-params, I wanna go out to my API, and I wanna fetch the list of the breeds that are available per animal. For example, if I select "dog" as the "Animal" and I want find out what _breeds_ of dogs are available, and we can do this through something called an **effect**.
+
+# [Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
+
+You can register handlers for things mouse leave, mouse enter, key up, key down, and can even handle stuff like copy and paste events, focus, blur, etc. [Here's a list of them from the React docs](https://reactjs.org/docs/events.html#supported-events).
