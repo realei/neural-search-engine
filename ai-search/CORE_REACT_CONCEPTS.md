@@ -77,3 +77,28 @@ Data fetching, setting up a subscription, and manually changing the DOM in React
 # [Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
 
 You can register handlers for things mouse leave, mouse enter, key up, key down, and can even handle stuff like copy and paste events, focus, blur, etc. [Here's a list of them from the React docs](https://reactjs.org/docs/events.html#supported-events).
+
+# Dev Environment
+
+When your're writingyour code, you want the **NODE_ENV** to be _development_. When change to _production_, it's literally four times smaller.
+
+CMD is `NODE_ENV='development' && echo $NODE_ENV`.
+
+`~/.bashrc` ---- this is the configuration for your **bash environment**
+
+_Should you be setting the environmental variables for the build?_
+
+If you are using **Parcel**, it just happens if you say. `dev`, it automatically sets the environment to be development.
+if you say `build` it is smart enough to just switch that automatically to NODE_ENV=production.
+
+# Strict Mode
+
+`import { StrictMode } from "react";`
+
+`<StrictMode></StrictMode>`
+
+_The Strict Mode gets stripped out in production builds_
+
+# React Dev Tools
+
+set of tools a **browser extension** that the React provides

@@ -39,9 +39,11 @@ const SearchParams = () => {
     <div className="search-params">
       <form
         onSubmit={(e) => {
-          {/* When you  submit a form, you have to prevent it from submitting,
+          {
+            /* When you  submit a form, you have to prevent it from submitting,
             or it's actually going  to refresh the page.
-          */}
+          */
+          }
           e.preventDefault();
           requestPets();
         }}
