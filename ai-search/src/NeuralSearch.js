@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import { ContactsOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,21 +22,32 @@ const NeuralSearch = () => {
   const [picture, setPicture] = useState([]);
 
   const onChangePicture = (e) => {
-
-    console.log(e.target.files)
-    
+    console.log("version 1")
     if (e.target.files[0]) {
-      // console.log("picture: ", e.target.files);
-      console.log("Here is a photo uploaded");
-      setPicture((e.target.files) => [...picture, e.target.files.key]);
-      console.log(picture)
-      // const reader = new FileReader();
-      // reader.addEventListener("load", () => {
-      //   setImgData(reader.result);
-      // });
-      // reader.readAsDataURL(e.target.files[0]);
+      setPicture(e.target.files[0]);
     }
   };
+
+  useEffect(() => {
+    requestTopk();
+  }, [picture])
+
+  async function requestTopk() {
+
+    // The parameters we are gonna pass to the fetch function
+    let fetchData = {
+      method: "GET",
+      body: picture
+    }
+
+    const res = await fetch(
+      `http://localhost:5000/image/query`,
+      fetchData
+    );
+    const json = await res.json();
+
+    console.log(json);
+  }
 
   return (
     <div className={classes.root}>

@@ -28,7 +28,8 @@
     "@material-ui/icons": "^4.11.2",
     "@types/react": "^17.0.14",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "ulimit": "^0.0.2"
   },
   "browserslist": [
     "last 2 Chrome versions"
