@@ -16,13 +16,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const NeuralSearch = () => {
   const classes = useStyles();
   const [picture, setPicture] = useState([]);
 
   const onChangePicture = (e) => {
-    console.log("version 1")
+    console.log("version 1");
     if (e.target.files[0]) {
       setPicture(e.target.files[0]);
     }
@@ -30,20 +29,28 @@ const NeuralSearch = () => {
 
   useEffect(() => {
     requestTopk();
-  }, [picture])
+  }, [picture]);
 
   async function requestTopk() {
-
     // The parameters we are gonna pass to the fetch function
-    let fetchData = {
-      method: "GET",
-      body: picture
-    }
 
-    const res = await fetch(
-      `http://localhost:5000/image/query`,
-      fetchData
-    );
+    let data = new FormData();
+
+    data.append("file", picture);
+
+    let fetchData = {
+      method: "POST",
+      // mode: "no-cors",
+      body: data,
+    };
+
+    console.log("we are here");
+
+    const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
+
+    console.log("the result is");
+    console.log(res.json());
+
     const json = await res.json();
 
     console.log(json);
@@ -57,7 +64,7 @@ const NeuralSearch = () => {
         className={classes.input}
         id="icon-button-file"
         type="file"
-        onChange={e => onChangePicture(e)}
+        onChange={(e) => onChangePicture(e)}
       />
       <label htmlFor="icon-button-file">
         <IconButton
