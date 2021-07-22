@@ -24,9 +24,9 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@bp.route('/query', methods=['GET'])
+@bp.route('/query', methods=['POST'])
 def query():
-    if request.method == 'GET':
+    if request.method == 'POST':
         # Check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
