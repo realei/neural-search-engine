@@ -44,16 +44,15 @@ const NeuralSearch = () => {
       body: data,
     };
 
-    console.log("we are here");
-
     const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
 
-    console.log("the result is");
+    console.log("the result is:");
     console.log(res.json());
+    console.log(res)
 
-    const json = await res.json();
+    // const json = await res.json();
 
-    console.log(json);
+    // console.log(json);
   }
 
   return (
