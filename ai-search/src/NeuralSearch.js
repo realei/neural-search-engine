@@ -48,7 +48,7 @@ const NeuralSearch = () => {
 
     console.log("the result is:");
     console.log(res.json());
-    console.log(res)
+    console.log(res);
 
     // const json = await res.json();
 

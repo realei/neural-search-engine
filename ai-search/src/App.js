@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import SearchParams from "./SearchParams";
 import NeuralSearch from "./NeuralSearch";
-import Details from './Details';
+import Details from "./Details";
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
           </Route>
           <Route path="/">
             <NeuralSearch />
-          </Route>        
+          </Route>
         </Switch>
       </Router>
     </div>
