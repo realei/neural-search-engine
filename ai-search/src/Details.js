@@ -1,6 +1,8 @@
+import { NoteTwoTone } from '@material-ui/icons';
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Carosel from './Carousel';
+import ErrorBoundary from './ErrorBoundary';
 
 class Details extends Component {
     constructor () {
@@ -52,4 +54,19 @@ class Details extends Component {
       )
     }
 }
-export default withRouter(Details);
+
+const DetailsWithRouter = withRouter(Details);
+
+// export default withRouter(Details);
+
+export default function DetailsWithErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <DetailsWithRouter />
+    </ErrorBoundary>
+  )
+}
+
+// In theory, now if thre was something  wrong  with router, 
+// we can acteually catch with func `export default function DetailsWithErrorBoundary()`
+// But if there is something wrong  with  router you'r gonna  have bigger problems than just an error boundary.

@@ -26,12 +26,14 @@ class ErrorBoundary extends Component {
   }
 }
 
+export default ErrorBoundary;
+
 // So this, what ever I  passinside  of ErrorBoundary, this is children
 // So what I am sayhing  here  is if I have  some sort of error, 
 // do something  about IsoTwoTone, like render the  stuff with <Link></Link>
 
 // If I dont have an error, just render whatever in the middle of below`<h1>Hi There</h1>.
 // So basically, be invisible  if  I dont't have  an error, only show up when  I have an error.
-<ErrorBoundary>
+{/* <ErrorBoundary>
   <h1>Hi There</h1>
-</ErrorBoundary>
+</ErrorBoundary> */}
