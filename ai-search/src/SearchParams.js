@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import ThemeContext from "./ThemeContext";
 import useBreedList from "./useBreedList";
 import Results from "./Results";
 
@@ -10,6 +11,7 @@ const SearchParams = () => {
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
+  const [theme, setTheme] = useContext(ThemeContext)
   // const breeds = [];
 
   useEffect(() => {
@@ -89,7 +91,22 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <button>Submit</button>
+        {/* make a drop down for "theme" */}
+        <label htmlFor="theme">
+          Theme
+          <select
+            value={theme}
+            onChange={e => setTheme(e.target.value)}
+            onBlur={e => setTheme(e.target.value)}>
+              <option value="darkblue">Dark Blue</option>
+              <option value="peru">Peru</option>
+              <option value="chartreuse">Chartreuse</option>
+              <option value="mediumorchid">Mediumorchide</option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme }}>Submit</button>
+        {/* Above has two *curly brace {}*, one is a signifying to react or to JSX I'm about to give you a JavaScript expression;
+        and inside of that I have an object. That's what  the couble curly braces, it's actually two separate sets.  */}
       </form>
       <Results pets={pets} />
     </div>
