@@ -4,7 +4,7 @@ import { Component } from 'react';
 import  { Link, Redirect } from 'react-router-dom';
 
 class ErrorBoundary extends Component {
-  state = { hasError: false, redirectL false };
+  state = { hasError: false, redirect: false };
   static getDerivedStateFromError() {
     return { hasError: true }
   }
