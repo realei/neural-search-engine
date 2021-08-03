@@ -22,6 +22,7 @@ const NeuralSearch = () => {
 
   const onChangePicture = (e) => {
     console.log("version 1");
+
     if (e.target.files[0]) {
       setPicture(e.target.files[0]);
     }
@@ -33,6 +34,8 @@ const NeuralSearch = () => {
 
   async function requestTopk() {
     // The parameters we are gonna pass to the fetch function
+
+    console.log("start featching by POSTing Images......")
 
     let data = new FormData();
 
@@ -47,12 +50,27 @@ const NeuralSearch = () => {
     const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
 
     console.log("the result is:");
-    console.log(res.json());
-    console.log(res);
+    // console.log(res.json());
+    
+    // var topK = res.json().topK
 
-    // const json = await res.json();
+    // console.log("now TopK is:")
+    // console.log(topK)
 
-    // console.log(json);
+    const json = await res.json();
+
+    console.log(typeof json);
+
+    console.log(json)
+
+    var t = "topK"
+    console.log(typeof json[t])
+
+    for(var num in json[t]) {
+      console.log(num)
+    }
+
+    console.log("done")
   }
 
   return (
