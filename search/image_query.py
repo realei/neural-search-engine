@@ -98,9 +98,13 @@ def query():
 
         _, topk_indexes = index.search(img_embeddings, top_k)
 
-        result = {
-            "topk": list(map(int, topk_indexes[0]))
-            }
+        result = []
+        for i in topk_indexes[0]:
+            result.append({
+                "img": f'http://127.0.0.1:5000/thumbnails/{i}.jpg',
+                "title": f'Image Index {i}',
+                "desc": "Demo Image"
+                })
 
         print(f"\nType of topk_indexe[0]: {type(topk_indexes[0])}")
         print(f"\n Top 10 indexes are: {list(topk_indexes[0])} \n")
