@@ -57,17 +57,11 @@ const NeuralSearch = () => {
     // console.log("now TopK is:")
     // console.log(topK)
 
-    const json = await res.json();
+    const imageObject = await res.json();
 
-    console.log(typeof json);
 
-    console.log(json)
-
-    var t = "topK"
-    console.log(typeof json[t])
-
-    for(var num in json[t]) {
-      console.log(num)
+    for(var img in imageObject) {
+      console.log(imageObject[img])
     }
 
     console.log("done")

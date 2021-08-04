@@ -6,14 +6,14 @@ from flask import (
 
 bp = Blueprint('thumbnails', __name__, url_prefix='/medias')
 
-@bp.route('/thumbnails/<int:image_id>', methods=['GET'])
-def thumbnails(image_id):
+@bp.route('/thumbnails/<filename>', methods=['GET'])
+def thumbnails(filename):
     """
-    http://stage.neuralsearch.com/thumbnails/1
+    http://stage.neuralsearch.com/thumbnails/1.jpg
     """
     
-    file_type = "jpg"
-    filename = str(image_id) + '.' + file_type
+    # file_type = "jpg"
+    # filename = str(image_id) + '.' + file_type
 
     return send_file(
         os.path.join(

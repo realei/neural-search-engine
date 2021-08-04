@@ -19,3 +19,9 @@ After the first time release, the result shows the MVP version can help users to
 
 3. deactivate venv
 'deactivate'
+
+4. Flask Run
+
+`flask run`   ---- 5000
+
+`flask run -h localhost -p 3000` --- 3000
