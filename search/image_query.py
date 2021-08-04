@@ -97,10 +97,12 @@ def query():
         top_k = 10
 
         _, topk_indexes = index.search(img_embeddings, top_k)
+        topk_list = list(topk_indexes[0])
 
         result = []
-        for i in topk_indexes[0]:
+        for i in topk_list:
             result.append({
+                "index": topk_list.index(i),
                 "img": f'http://127.0.0.1:5000/thumbnails/{i}.jpg',
                 "title": f'Image Index {i}',
                 "desc": "Demo Image"
