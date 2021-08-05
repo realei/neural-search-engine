@@ -20,7 +20,7 @@ const App = () => {
         <Router>
           <header>
             <Link to="/">
-              <h1>AI Search</h1>
+              <h1>Image Search</h1>
             </Link>
           </header>
 
