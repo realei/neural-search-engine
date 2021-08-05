@@ -3,7 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 // import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import { ContactsOutlined } from "@material-ui/icons";
+// import { ContactsOutlined } from "@material-ui/icons";
+import TitlebarImageList from "./TitlebarImageList.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 const NeuralSearch = () => {
   const classes = useStyles();
   const [picture, setPicture] = useState([]);
+  const [itemData, setItemData] = useState([]);
 
   const onChangePicture = (e) => {
     console.log("version 1");
@@ -49,19 +51,14 @@ const NeuralSearch = () => {
 
     const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
 
-    console.log("the result is:");
-    // console.log(res.json());
-    
-    // var topK = res.json().topK
-
-    // console.log("now TopK is:")
-    // console.log(topK)
-
     const imageObject = await res.json();
 
+    setItemData(imageObject);
 
-    for(var img in imageObject) {
-      console.log(imageObject[img])
+    console.log("the result in NeuralSearch is:");
+    
+    for(var img in itemData) {
+      console.log(itemData[img])
     }
 
     console.log("done")
@@ -89,6 +86,7 @@ const NeuralSearch = () => {
           Search
         </Button> */}
       </label>
+      <TitlebarImageList itemData={ itemData }/>
     </div>
   );
 };

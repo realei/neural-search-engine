@@ -6,7 +6,7 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import itemData from './itemData';
+// import itemData from './itemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,21 +42,24 @@ const useStyles = makeStyles((theme) => ({
  *   },
  * ];
  */
-export default function TitlebarImageList() {
+const TitlebarImageList = ({ itemData }) => {
   const classes = useStyles();
+
+  console.log("Now it is TielebarImageList, itemData:")
+  console.log(itemData)
 
   return (
     <div className={classes.root}>
       <ImageList rowHeight={180} className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">December</ListSubheader>
+          <ListSubheader component="div">Top 10 Similar Images</ListSubheader>
         </ImageListItem>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img src={item.img} alt={item.title} />
             <ImageListItemBar
               title={item.title}
-              subtitle={<span>by: {item.author}</span>}
+              subtitle={<span>by: {item.desc}</span>}
               actionIcon={
                 <IconButton aria-label={`info about ${item.title}`} className={classes.icon}>
                   <InfoIcon />
@@ -69,3 +72,5 @@ export default function TitlebarImageList() {
     </div>
   );
 }
+
+export default TitlebarImageList;

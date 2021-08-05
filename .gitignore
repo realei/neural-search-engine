@@ -7,6 +7,7 @@ learning/
 thumbnails/images/
 flaskr/
 
+search/uploads/*
 photos/*.jpg
 embeddings/*.npy
 *.pyc
