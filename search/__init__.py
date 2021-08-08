@@ -17,13 +17,11 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'search.sqlite'),
     )
 
-    #app.config['PHOTOS']
     app.config['EMBEDDINGS'] = os.path.join(
         app.instance_path,
         "embeddings.npy"
         )
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    print(app.config['UPLOAD_FOLDER'])
     
 
     if test_config is None:

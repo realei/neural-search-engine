@@ -1,8 +1,10 @@
 import torch
+import json
 import faiss
 import sys
 import os
 import cv2
+from flask_cors import CORS
 from flask import (
     Blueprint, flash, g, redirect, request, url_for, current_app
 )
@@ -20,13 +22,15 @@ from engine.modules import normalize_input, ImageModel, CFG
 bp = Blueprint('image_query', __name__, url_prefix='/image')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
+CORS(bp) # enable CORS on the bp blue print
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@bp.route('/query', methods=['GET'])
+@bp.route('/query', methods=['POST', 'GET'])
 def query():
-    if request.method == 'GET':
+    if request.method == 'POST' or request.method == 'GET':
         # Check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -93,11 +97,21 @@ def query():
         top_k = 10
 
         _, topk_indexes = index.search(img_embeddings, top_k)
+        topk_list = list(topk_indexes[0])
 
+        result = []
+        for i in topk_list:
+            result.append({
+                "index": topk_list.index(i),
+                "img": f'http://127.0.0.1:3000/medias/thumbnails/{i}.jpg',
+                "title": f'Image Index {i}',
+                "desc": "Demo Image"
+                })
+
+        print(f"\nType of topk_indexe[0]: {type(topk_indexes[0])}")
         print(f"\n Top 10 indexes are: {list(topk_indexes[0])} \n")
         
-        return(f"Top 10 indexes are: {list(topk_indexes[0])}")
-
+        return json.dumps(result)
 
 @bp.route('/index/<int:top_k>', methods=['GET'])
 def index(top_k):
