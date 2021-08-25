@@ -1,0 +1,46 @@
+FROM python:3.7.6-alpine as builder
+
+WORKDIR /usr/src/thumbnails
+COPY . /usr/src/thumbnails/
+# create directory for the thumbnails user
+RUN mkdir -p /home/
+
+# create the thumbnails user
+#RUN addgroup -S thumbnails && adduser -S thumbnails -G thumbnails
+RUN groupadd thumbnails
+RUN useradd -rm -d /home/thumbnails -s /bin/bash -g thumbnails -G sudo -u 1001 thumbnails
+
+# create the appropriate directories
+#ENV HOME=/home/thumbnails
+ENV thumbnails_HOME=/home/thumbnails/web
+RUN mkdir $thumbnails_HOME
+RUN mkdir $thumbnails_HOME/staticfiles
+RUN mkdir $APP_HOME/mediafiles
+
+# set environment variables:
+# Prevents Python from writing pyc files to disc (python3 -B)
+ENV PYTHONDONTWRITEBYTECODE 1
+# Prevents Python from buffering stdout and stderr (python3 -u)
+ENV PYTHONUNBUFFERED 1
+
+# install dependencies                                    
+RUN pip3 install --upgrade pip                            
+COPY ./requirements.txt /usr/src/thumbnails/requirements.txt
+RUN pip3 install -r requirements.txt
+RUN pip3 install Pillow
+
+# copy entrypoint-prod.sh
+COPY ./entrypoint.prod.sh $thumbnails_HOME
+
+# copy project
+COPY . $thumbnails_HOME
+
+# chown all the files to the thumbnails user
+RUN chown -R thumbnails:thumbnails $thumbnails_HOME
+
+# change the user to thumbnails
+USER thumbnails                    
+                                                          
+WORKDIR $thumbnails_HOME
+# run entrypoint.sh                                       
+ENTRYPOINT ["/usr/src/thumbnails/entrypoint.sh"]
