@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  thumbnails:
+    build: .
+    volumes:
+      - ./:/usr/src/thumbnails/
+    ports:
+      - 5000:5000

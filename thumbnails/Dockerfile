@@ -6,16 +6,13 @@ COPY . /usr/src/thumbnails/
 RUN mkdir -p /home/
 
 # create the thumbnails user
-#RUN addgroup -S thumbnails && adduser -S thumbnails -G thumbnails
-RUN groupadd thumbnails
-RUN useradd -rm -d /home/thumbnails -s /bin/bash -g thumbnails -G sudo -u 1001 thumbnails
+RUN addgroup -S thumbnails && adduser -S thumbnails -G thumbnails
 
 # create the appropriate directories
 #ENV HOME=/home/thumbnails
 ENV thumbnails_HOME=/home/thumbnails/web
 RUN mkdir $thumbnails_HOME
-RUN mkdir $thumbnails_HOME/staticfiles
-RUN mkdir $APP_HOME/mediafiles
+RUN mkdir $thumbnails_HOME/images
 
 # set environment variables:
 # Prevents Python from writing pyc files to disc (python3 -B)
@@ -27,10 +24,9 @@ ENV PYTHONUNBUFFERED 1
 RUN pip3 install --upgrade pip                            
 COPY ./requirements.txt /usr/src/thumbnails/requirements.txt
 RUN pip3 install -r requirements.txt
-RUN pip3 install Pillow
 
-# copy entrypoint-prod.sh
-COPY ./entrypoint.prod.sh $thumbnails_HOME
+# copy entrypoint.sh
+COPY ./entrypoint.sh $thumbnails_HOME
 
 # copy project
 COPY . $thumbnails_HOME

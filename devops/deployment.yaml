@@ -1,0 +1,45 @@
+piVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neural-serch-stage
+  namespace: neural-search-prod
+  labels:
+    app: neural-serch
+    ref: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: neural-serch
+      ref: dev
+  template:
+    metadata:
+      labels:
+        app: neural-serch
+        ref: dev
+    spec:
+      imagePullSecrets:
+        - name: gcp_hub_secret 
+      containers:
+      - name: web
+        image: ns-thumbnails:v0.0.1
+        imagePullPolicy: Always
+        env:
+        - name: DEBUG
+          value: "1"
+        - name: SECRET_KEY
+          value: "please_change_me"
+          #valueFrom:
+          #  secretKeyRef:
+          #    name: postgres-credentials
+          #    key: password
+
+        ports:
+          - containerPort: 8000
+        volumeMounts:
+          - name: images-volume-mount
+            mountPath: /home/thumbnails/web/staticfiles
+      volumes:
+        - name: images-volume-mount
+          persistentVolumeClsaim:
+            claimName: images-pvc
