@@ -2,13 +2,12 @@ FROM gcr.io/neural-search-prod/faiss:1.7.1
 
 WORKDIR /usr/src/ai-search
 COPY . /usr/src/ai-search/
-# create directory for the ai-search user
 
 # create the ai-search user
 RUN groupadd -r ai-search && useradd -r -g ai-search ai-search
 
 # create the appropriate directories
-#ENV HOME=/home/ai-search
+# ENV HOME=/home/ai-search
 ENV HOME=/home/ai-search/web
 RUN mkdir -p $HOME
 RUN mkdir $HOME/images
@@ -45,4 +44,4 @@ WORKDIR $HOME
 USER ai-search
 
 # run entrypoint.sh                                       
-ENTRYPOINT ["/usr/src/ai-search/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]

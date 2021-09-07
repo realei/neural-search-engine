@@ -25,21 +25,21 @@ spec:
         image: ns-thumbnails:v0.0.1
         imagePullPolicy: Always
         env:
-        - name: DEBUG
-          value: "1"
-        - name: SECRET_KEY
-          value: "please_change_me"
+        - name: FLASK_ENV 
+          value: "development"
+        - name: FLASK_APP
+          value: "search"
           #valueFrom:
           #  secretKeyRef:
           #    name: postgres-credentials
           #    key: password
 
         ports:
-          - containerPort: 8000
+          - containerPort: 5000
         volumeMounts:
           - name: images-volume-mount
-            mountPath: /home/thumbnails/web/staticfiles
+            mountPath: /home/ai-search/web/instances
       volumes:
-        - name: images-volume-mount
+        - name: embeddings-volume-mount
           persistentVolumeClsaim:
-            claimName: images-pvc
+            claimName: embeddings-pvc

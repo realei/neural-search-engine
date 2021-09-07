@@ -10,10 +10,12 @@ flaskr/
 search/uploads/*
 photos/*.jpg
 embeddings/*.npy
+web/instance/*
 *.pyc
 *.swp
 *.swo
 *.jpg
+*.npy
 __pycache__/
 
 instance/

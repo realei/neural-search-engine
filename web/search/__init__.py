@@ -23,6 +23,8 @@ def create_app(test_config=None):
         )
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     
+    print("instance path is: \n" + app.instance_path)
+    
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
