@@ -1,7 +1,6 @@
 FROM gcr.io/neural-search-prod/faiss:1.7.1
 
 WORKDIR /usr/src/ai-search
-COPY . /usr/src/ai-search/
 
 # create the ai-search user
 RUN groupadd -r ai-search && useradd -r -g ai-search ai-search
@@ -10,7 +9,7 @@ RUN groupadd -r ai-search && useradd -r -g ai-search ai-search
 # ENV HOME=/home/ai-search
 ENV HOME=/home/ai-search/web
 RUN mkdir -p $HOME
-RUN mkdir $HOME/images
+RUN mkdir $HOME/instance
 
 # set environment variables:
 # Prevents Python from writing pyc files to disc (python3 -B)
@@ -32,7 +31,8 @@ RUN pip install -r requirements.txt
 COPY ./entrypoint.sh $HOME
 
 # copy project
-COPY . $HOME
+COPY ./search $HOME
+COPY ./engine $HOME 
 
 
 # chown all the files to the ai-search user

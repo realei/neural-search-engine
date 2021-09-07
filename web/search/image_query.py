@@ -103,7 +103,7 @@ def query():
         for i in topk_list:
             result.append({
                 "index": topk_list.index(i),
-                "img": f'http://127.0.0.1:3000/medias/thumbnails/{i}.jpg',
+                "img": f'https://storage.googleapis.com/neural-search-prod/{i}.jpg',
                 "title": f'Image Index {i}',
                 "desc": "Demo Image"
                 })
