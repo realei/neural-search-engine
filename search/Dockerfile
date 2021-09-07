@@ -1,17 +1,16 @@
-FROM python:3.7.6-alpine as builder
+FROM gcr.io/neural-search-prod/faiss:1.7.1
 
 WORKDIR /usr/src/ai-search
 COPY . /usr/src/ai-search/
 # create directory for the ai-search user
-RUN mkdir -p /home/
 
 # create the ai-search user
-RUN addgroup -S ai-search && adduser -S ai-search -G ai-search
+RUN groupadd -r ai-search && useradd -r -g ai-search ai-search
 
 # create the appropriate directories
 #ENV HOME=/home/ai-search
 ENV HOME=/home/ai-search/web
-RUN mkdir $HOME
+RUN mkdir -p $HOME
 RUN mkdir $HOME/images
 
 # set environment variables:
@@ -20,10 +19,15 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Prevents Python from buffering stdout and stderr (python3 -u)
 ENV PYTHONUNBUFFERED 1
 
+# install Pillow
+RUN apt-get update && apt-get install -y \
+        python-dev python-pip python-setuptools \
+        libjpeg8-dev zlib1g-dev
+
 # install dependencies                                    
-RUN pip3 install --upgrade pip                            
+RUN pip install Pillow
 COPY ./requirements.txt /usr/src/ai-search/requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh $HOME
@@ -31,12 +35,14 @@ COPY ./entrypoint.sh $HOME
 # copy project
 COPY . $HOME
 
+
 # chown all the files to the ai-search user
 RUN chown -R ai-search:ai-search $HOME
-
-# change the user to ai-search
-USER ai-search                    
                                                           
 WORKDIR $HOME
+
+# change the user to ai-search
+USER ai-search
+
 # run entrypoint.sh                                       
 ENTRYPOINT ["/usr/src/ai-search/entrypoint.sh"]
