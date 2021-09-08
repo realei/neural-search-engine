@@ -1,16 +1,16 @@
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: embeddings-pvc
-  namespace: neural-search
+  namespace: neural-search-prod
   labels:
     type: local
 spec:
-  storageClassName: fast
+  storageClassName: standard
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 15Gi
-  volumeName: embeddings
+      storage: 2Gi
+  volumeName: embeddings-storage
 
