@@ -18,8 +18,8 @@ spec:
         app: neural-serch
         ref: dev
     spec:
-      imagePullSecrets:
-        - name: gcp_hub_secret 
+        #imagePullSecrets:
+        #  - name: gcp_hub_secret 
       containers:
       - name: web
         image: gcr.io/neural-search-prod/search-engine:1.0.1

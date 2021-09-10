@@ -5,8 +5,9 @@
 
 body {
   background-color: #81a69b;
-  background-image: url(https://image.shutterstock.com/image-vector/flat-vector-web-banner-on-260nw-376628449.jpg);
+  background-image: url(https://storage.googleapis.com/neural-search-backgrounds/magnifier.jpg);
   margin: 0;
+  background-size: cover;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: 100% 100%;
 }

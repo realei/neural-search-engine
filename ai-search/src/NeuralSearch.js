@@ -49,7 +49,7 @@ const NeuralSearch = () => {
       body: data,
     };
 
-    const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
+    const res = await fetch(`http://116.203.226.249:30666/image/query`, fetchData);
 
     const imageObject = await res.json();
 
