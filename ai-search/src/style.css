@@ -5,9 +5,17 @@
 
 body {
   background-color: #81a69b;
-  background-image: url(https://storage.googleapis.com/neural-search-backgrounds/magnifier.jpg);
+  background-image: url(https://storage.googleapis.com/neural-search-prod/magnifier.jpg);
   margin: 0;
   background-size: cover;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: 100% 100%;
+}
+
+.search {
+  position: fixed;
+  top: 40%;
+  bottom: 40%;
+  left: 10%;
+  right: 10%;
 }

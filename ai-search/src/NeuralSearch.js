@@ -65,7 +65,7 @@ const NeuralSearch = () => {
   }
 
   return (
-    <div className={classes.root}>
+    <div class="search">
       <input type="text" id="fname" name="fname"></input>
       <input
         accept="image/*"
@@ -86,7 +86,7 @@ const NeuralSearch = () => {
           Search
         </Button> */}
       </label>
-      <TitlebarImageList itemData={ itemData }/>
+      {/* <TitlebarImageList itemData={ itemData }/> */}
     </div>
   );
 };
