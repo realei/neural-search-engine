@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    backgroundImage: `url(https://storage.googleapis.com/toorbee-image-search-backgrounds/magnifier.jpg)`,
+    backgroundSize: 'cover',
   },
   imageList: {
     width: 1500,
