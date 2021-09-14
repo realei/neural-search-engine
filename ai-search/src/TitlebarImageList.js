@@ -11,14 +11,15 @@ import InfoIcon from '@material-ui/icons/Info';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flesDirection: 'row-reverse',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
   imageList: {
-    width: 500,
-    height: 450,
+    width: 1500,
+    height:1000,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -48,10 +49,10 @@ const TitlebarImageList = ({ itemData }) => {
   if(itemData) {
     return (
       <div className={classes.root}>
-        <ImageList rowHeight={180} className={classes.imageList}>
-          <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader component="div">Top 10 Similar Images</ListSubheader>
-          </ImageListItem>
+        <ImageList rowHeight={180} cols={8} className={classes.imageList}>
+          {/* <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
+            <ListSubheader component="div">Top K Similar Images</ListSubheader>
+          </ImageListItem> */}
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
               <img src={item.img} alt={item.title} />

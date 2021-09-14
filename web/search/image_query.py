@@ -94,7 +94,7 @@ def query():
         index = faiss.IndexFlatL2(d)
         index.add(embeddings)
 
-        top_k = 10
+        top_k = 40 
 
         _, topk_indexes = index.search(img_embeddings, top_k)
         topk_list = list(topk_indexes[0])
@@ -110,6 +110,8 @@ def query():
 
         print(f"\nType of topk_indexe[0]: {type(topk_indexes[0])}")
         print(f"\n Top 10 indexes are: {list(topk_indexes[0])} \n")
+
+        os.remove(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         
         return json.dumps(result)
 

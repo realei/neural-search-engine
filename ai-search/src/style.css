@@ -13,9 +13,9 @@ body {
 }
 
 .search {
-  position: fixed;
-  top: 40%;
+  position: static;
+  /* top: 40%;
   bottom: 40%;
   left: 10%;
-  right: 10%;
+  right: 10%; */
 }
