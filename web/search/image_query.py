@@ -94,7 +94,7 @@ def query():
         index = faiss.IndexFlatL2(d)
         index.add(embeddings)
 
-        top_k = 10
+        top_k = 42 
 
         _, topk_indexes = index.search(img_embeddings, top_k)
         topk_list = list(topk_indexes[0])
@@ -103,13 +103,15 @@ def query():
         for i in topk_list:
             result.append({
                 "index": topk_list.index(i),
-                "img": f'http://127.0.0.1:3000/medias/thumbnails/{i}.jpg',
+                "img": f'https://storage.googleapis.com/neural-search-prod/{i}.jpg',
                 "title": f'Image Index {i}',
                 "desc": "Demo Image"
                 })
 
         print(f"\nType of topk_indexe[0]: {type(topk_indexes[0])}")
         print(f"\n Top 10 indexes are: {list(topk_indexes[0])} \n")
+
+        os.remove(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         
         return json.dumps(result)
 

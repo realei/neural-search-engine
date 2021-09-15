@@ -11,14 +11,17 @@ import InfoIcon from '@material-ui/icons/Info';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flesDirection: 'row-reverse',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    backgroundImage: `url(https://storage.googleapis.com/toorbee-image-search-backgrounds/magnifier.jpg)`,
+    backgroundSize: 'cover',
   },
   imageList: {
-    width: 500,
-    height: 450,
+    width: 1500,
+    height:1000,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -45,32 +48,37 @@ const useStyles = makeStyles((theme) => ({
 const TitlebarImageList = ({ itemData }) => {
   const classes = useStyles();
 
-  console.log("Now it is TielebarImageList, itemData:")
-  console.log(itemData)
+  if(itemData) {
+    return (
+      <div className={classes.root}>
+        <ImageList rowHeight={180} cols={6} className={classes.imageList}>
+          {/* <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
+            <ListSubheader component="div">Top K Similar Images</ListSubheader>
+          </ImageListItem> */}
+          {itemData.map((item) => (
+            <ImageListItem key={item.img}>
+              <img src={item.img} alt={item.title} />
+              <ImageListItemBar
+                title={item.title}
+                subtitle={<span>by: {item.desc}</span>}
+                actionIcon={
+                  <IconButton aria-label={`info about ${item.title}`} className={classes.icon}>
+                    <InfoIcon />
+                  </IconButton>
+                }
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      </div>
+    );
+  }
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={180} className={classes.imageList}>
-        <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">Top 10 Similar Images</ListSubheader>
-        </ImageListItem>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
-            <img src={item.img} alt={item.title} />
-            <ImageListItemBar
-              title={item.title}
-              subtitle={<span>by: {item.desc}</span>}
-              actionIcon={
-                <IconButton aria-label={`info about ${item.title}`} className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+      <h2>Demo project, Please input an image file!</h2>
     </div>
-  );
+  )
 }
 
 export default TitlebarImageList;

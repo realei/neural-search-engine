@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 // import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
@@ -32,6 +33,17 @@ const NeuralSearch = () => {
 
   useEffect(() => {
     requestTopk();
+
+    console.log("itemData is " + itemData.length + ", now Redirecting")
+
+    if (itemData.length > 0) {
+      return <Redirect
+              to={{
+              pathname: "/results",
+              state: { itemData }
+              }}
+              />
+    }
   }, [picture]);
 
   async function requestTopk() {
@@ -49,23 +61,26 @@ const NeuralSearch = () => {
       body: data,
     };
 
+    // const res = await fetch(`http://116.203.226.249:30666/image/query`, fetchData);
     const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
 
     const imageObject = await res.json();
 
     setItemData(imageObject);
 
-    console.log("the result in NeuralSearch is:");
+    // console.log("the result in NeuralSearch is:");
     
-    for(var img in itemData) {
-      console.log(itemData[img])
-    }
+    // for(var img in itemData) {
+    //   console.log(itemData[img])
+    // }
 
-    console.log("done")
+    // console.log("itemData's legnth is:"+itemData.length);
+
+    // console.log("done")
   }
 
   return (
-    <div className={classes.root}>
+    <div class="search">
       <input type="text" id="fname" name="fname"></input>
       <input
         accept="image/*"
@@ -82,9 +97,6 @@ const NeuralSearch = () => {
         >
           <PhotoCamera />
         </IconButton>
-        {/* <Button variant="contained" onClick={ onChangePicture }>
-          Search
-        </Button> */}
       </label>
       <TitlebarImageList itemData={ itemData }/>
     </div>
