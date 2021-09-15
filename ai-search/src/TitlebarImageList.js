@@ -51,7 +51,7 @@ const TitlebarImageList = ({ itemData }) => {
   if(itemData) {
     return (
       <div className={classes.root}>
-        <ImageList rowHeight={180} cols={8} className={classes.imageList}>
+        <ImageList rowHeight={180} cols={6} className={classes.imageList}>
           {/* <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
             <ListSubheader component="div">Top K Similar Images</ListSubheader>
           </ImageListItem> */}

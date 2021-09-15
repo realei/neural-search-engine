@@ -11,7 +11,7 @@ UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_FOLD)
 def create_app(test_config=None):
 
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, static_folder='../frontend', static_url_path='/', instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'search.sqlite'),
@@ -40,5 +40,9 @@ def create_app(test_config=None):
         pass
 
     app.register_blueprint(image_query.bp)
+
+    @app.route('/')
+    def index():
+        return app.send_static_file('index.html')
 
     return app 

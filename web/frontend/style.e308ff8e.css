@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  color: #333;
+}
+
+body {
+  background-color: #81a69b;
+  background-image: url(https://storage.googleapis.com/toorbee-image-search-backgrounds/magnifier.jpg);
+  margin: 0;
+  background-size: cover;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: 100% 100%;
+}
+
+.search {
+  position: static;
+  /* top: 40%;
+  bottom: 40%;
+  left: 10%;
+  right: 10%; */
+}
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */

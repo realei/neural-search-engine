@@ -94,7 +94,7 @@ def query():
         index = faiss.IndexFlatL2(d)
         index.add(embeddings)
 
-        top_k = 40 
+        top_k = 42 
 
         _, topk_indexes = index.search(img_embeddings, top_k)
         topk_list = list(topk_indexes[0])
