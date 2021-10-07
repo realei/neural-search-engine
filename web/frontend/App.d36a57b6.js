@@ -50699,9 +50699,10 @@ const NeuralSearch = () => {
       method: "POST",
       // mode: "no-cors",
       body: data
-    }; // const res = await fetch(`http://116.203.226.249:30666/image/query`, fetchData);
+    };
+    const res = await fetch(`https://imagesearchstage.toorbee.com/image/query`, fetchData); // const res = await fetch(`http://116.203.226.249:30666/image/query`, fetchData);
+    // const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
 
-    const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
     const imageObject = await res.json();
     setItemData(imageObject); // console.log("the result in NeuralSearch is:");
     // for(var img in itemData) {
@@ -50859,7 +50860,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42519" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
