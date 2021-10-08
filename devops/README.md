@@ -35,3 +35,17 @@
   `kubectl create namespace neural-search-prod`
 
   `kubectl get namespace`
+
+## Debug on Kubernetes 
+
+* Run `cmd` in pod of kubernetes
+
+`kubectl exec neural-serch-stage-c9889488f-bxqxm -c web -n neural-search-prod -- ls -l instances`
+
+* Copy embedding feature files from local host to pvc assiciate with pod:
+
+`kubectl cp ./embeddings.npy neural-search-prod/neural-serch-stage-c9889488f-bxqxm:/home/ai-search/web/instance/.`
+
+check how it work by:
+
+`kubectl cp --help`

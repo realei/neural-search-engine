@@ -22,7 +22,7 @@ spec:
         #  - name: gcp_hub_secret 
       containers:
       - name: web
-        image: eu.gcr.io/neural-search-prod/search-engine:1.0.2
+        image: eu.gcr.io/neural-search-prod/search-engine:1.0.4
         imagePullPolicy: Always
         env:
         - name: FLASK_ENV 

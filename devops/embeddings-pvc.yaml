@@ -5,7 +5,7 @@ metadata:
   namespace: neural-search-prod
 spec:
   accessModes:
-  - ReadOnlyMany 
+  - ReadWriteOnce 
   storageClassName: standard
   resources:
     requests:
