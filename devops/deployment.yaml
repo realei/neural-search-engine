@@ -22,7 +22,7 @@ spec:
         #  - name: gcp_hub_secret 
       containers:
       - name: web
-        image: gcr.io/neural-search-prod/search-engine:1.0.1
+        image: eu.gcr.io/neural-search-prod/search-engine:1.0.2
         imagePullPolicy: Always
         env:
         - name: FLASK_ENV 
@@ -34,6 +34,11 @@ spec:
         volumeMounts:
           - name: embeddings-storage
             mountPath: /home/ai-search/web/instances
+      tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Equal"
+        value: ""
+        effect: "NoSchedule"
       volumes:
         - name: embeddings-storage
           persistentVolumeClaim:
