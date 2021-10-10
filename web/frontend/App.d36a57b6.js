@@ -50524,7 +50524,7 @@ const useStyles = (0, _styles.makeStyles)(theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    backgroundImage: `url(https://storage.googleapis.com/toorbee-image-search-backgrounds/magnifier.jpg)`,
+    backgroundImage: `url(https://storage.googleapis.com/neural-search-prod/magnifier.jpg)`,
     backgroundSize: 'cover'
   },
   imageList: {
@@ -50567,7 +50567,7 @@ const TitlebarImageList = ({
         /*#__PURE__*/
         (0, _jsxRuntime.jsx)(_ImageList.default, {
           rowHeight: 180,
-          cols: 6,
+          cols: 4,
           className: classes.imageList,
           children: itemData.map(item =>
           /*#__PURE__*/
@@ -50700,16 +50700,9 @@ const NeuralSearch = () => {
       // mode: "no-cors",
       body: data
     };
-    const res = await fetch(`https://imagesearchstage.toorbee.com/image/query`, fetchData); // const res = await fetch(`http://116.203.226.249:30666/image/query`, fetchData);
-    // const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
-
+    const res = await fetch(`http://www.neuralsearch.tech/image/query`, fetchData);
     const imageObject = await res.json();
-    setItemData(imageObject); // console.log("the result in NeuralSearch is:");
-    // for(var img in itemData) {
-    //   console.log(itemData[img])
-    // }
-    // console.log("itemData's legnth is:"+itemData.length);
-    // console.log("done")
+    setItemData(imageObject);
   }
 
   return (
@@ -50792,7 +50785,7 @@ const App = () => {
             children:
             /*#__PURE__*/
             (0, _jsxRuntime.jsx)("h1", {
-              children: "Image Search"
+              children: "Neural Search"
             })
           })
         }),
@@ -50860,7 +50853,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42519" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45487" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

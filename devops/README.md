@@ -36,6 +36,20 @@
 
   `kubectl get namespace`
 
+5. Create tls key for GKE ingress (https LB)
+
+`openssl genrsa -out ns-ingress-1.key 2048`
+
+`openssl req -new -key ns-ingress-1.key -out ns-ingress-1.csr -subj "/CN=neuralsearch.tech"`
+
+`openssl x509 -req -days 365 -in ns-ingress-1.csr -signkey ns-ingress-1.key -out ns-ingress-1.crt`
+
+`kubectl create secret tls ns-tls-secret-1 --cert ns-ingress-1.crt --key ns-ingress-1.key -n neural-search-prod`
+
+[Google-managed SSL certificates](https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs)
+
+**Finally update secretName to ingress.yaml**
+
 ## Debug on Kubernetes 
 
 * Run `cmd` in pod of kubernetes
@@ -49,3 +63,7 @@
 check how it work by:
 
 `kubectl cp --help`
+
+* [Using the Compute Engine persistent disk CSI Driver ](http://cloud.go888ogle.com.fqhub.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver)
+
+`gcloud container clusters update --region=europe-west1 autopilot-cluster-1 --update-addons=GcePersistentDiskCsiDriver=ENABLED`

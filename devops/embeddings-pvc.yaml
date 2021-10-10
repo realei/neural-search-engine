@@ -4,9 +4,10 @@ metadata:
   name: embeddings-pvc
   namespace: neural-search-prod
 spec:
+  storageClassName: manual
   accessModes:
-  - ReadWriteOnce 
-  storageClassName: standard
+  - ReadWriteMany
   resources:
     requests:
-      storage: 5Gi
+      storage: 10G
+  volumeName: embeddings-pv
