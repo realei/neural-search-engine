@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: neural-search-ingress
+  namespace: neural-search-prod
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "ns-how-to-address"
+    networking.gke.io/managed-certificates: ns-managed-cert
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: neural-search-service
+            port:
+              number: 5000

@@ -1,4 +1,4 @@
-FROM gcr.io/neural-search-prod/faiss:1.7.1
+FROM eu.gcr.io/neural-search-prod/faiss:1.7.1
 
 WORKDIR /usr/src/ai-search
 
@@ -31,8 +31,9 @@ RUN pip install -r requirements.txt
 COPY ./entrypoint.sh $HOME
 
 # copy project
-COPY ./search $HOME
-COPY ./engine $HOME 
+COPY . $HOME
+#COPY ./search $HOME
+#COPY ./engine $HOME 
 
 
 # chown all the files to the ai-search user

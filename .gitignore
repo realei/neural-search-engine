@@ -24,6 +24,10 @@ instance/
 .coverage
 htmlcov/
 
+devops/*.crt
+devops/*.cst
+devops/*.key
+
 dist/
 build/
 *.egg-info/

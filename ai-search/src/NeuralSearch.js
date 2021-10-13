@@ -61,23 +61,12 @@ const NeuralSearch = () => {
       body: data,
     };
 
-    // const res = await fetch(`http://116.203.226.249:30666/image/query`, fetchData);
-    const res = await fetch(`http://127.0.0.1:5000/image/query`, fetchData);
-
+    const res = await fetch(`https://www.neuralsearch.tech/image/query`, fetchData);
     const imageObject = await res.json();
 
     setItemData(imageObject);
 
-    // console.log("the result in NeuralSearch is:");
-    
-    // for(var img in itemData) {
-    //   console.log(itemData[img])
-    // }
-
-    // console.log("itemData's legnth is:"+itemData.length);
-
-    // console.log("done")
-  }
+  };
 
   return (
     <div class="search">

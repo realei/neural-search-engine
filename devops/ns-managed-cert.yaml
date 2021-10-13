@@ -1,0 +1,9 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: ns-managed-cert
+  namespace: neural-search-prod
+spec:
+  domains:
+    - www.neuralsearch.tech
+    - neuralsearch.tech

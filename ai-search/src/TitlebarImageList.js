@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    backgroundImage: `url(https://storage.googleapis.com/toorbee-image-search-backgrounds/magnifier.jpg)`,
+    backgroundImage: `url(https://storage.googleapis.com/neural-search-prod/magnifier.jpg)`,
     backgroundSize: 'cover',
   },
   imageList: {
@@ -51,7 +51,7 @@ const TitlebarImageList = ({ itemData }) => {
   if(itemData) {
     return (
       <div className={classes.root}>
-        <ImageList rowHeight={180} cols={6} className={classes.imageList}>
+        <ImageList rowHeight={180} cols={4} className={classes.imageList}>
           {/* <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
             <ListSubheader component="div">Top K Similar Images</ListSubheader>
           </ImageListItem> */}

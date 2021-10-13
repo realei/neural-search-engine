@@ -1,28 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: neural-serch-stage
+  name: neural-search-stage
   namespace: neural-search-prod
   labels:
-    app: neural-serch
+    app: neural-search
     ref: dev
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: neural-serch
+      app: neural-search
       ref: dev
   template:
     metadata:
       labels:
-        app: neural-serch
+        app: neural-search
         ref: dev
     spec:
         #imagePullSecrets:
         #  - name: gcp_hub_secret 
       containers:
       - name: web
-        image: gcr.io/neural-search-prod/search-engine:1.0.1
+        image: eu.gcr.io/neural-search-prod/search-engine:1.1.0_debug01
+        resources:
+          limits:
+            memory: "4Gi"
+          requests:
+            memory: "3Gi"
         imagePullPolicy: Always
         env:
         - name: FLASK_ENV 
@@ -33,7 +38,7 @@ spec:
           - containerPort: 5000
         volumeMounts:
           - name: embeddings-storage
-            mountPath: /home/ai-search/web/instances
+            mountPath: /home/ai-search/web/instance
       volumes:
         - name: embeddings-storage
           persistentVolumeClaim:
