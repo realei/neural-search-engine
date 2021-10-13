@@ -50700,11 +50700,12 @@ const NeuralSearch = () => {
       // mode: "no-cors",
       body: data
     };
-    const res = await fetch(`http://www.neuralsearch.tech/image/query`, fetchData);
+    const res = await fetch(`https://www.neuralsearch.tech/image/query`, fetchData);
     const imageObject = await res.json();
     setItemData(imageObject);
   }
 
+  ;
   return (
     /*#__PURE__*/
     (0, _jsxRuntime.jsxs)("div", {
@@ -50785,7 +50786,7 @@ const App = () => {
             children:
             /*#__PURE__*/
             (0, _jsxRuntime.jsx)("h1", {
-              children: "Neural Search"
+              children: "Image Search"
             })
           })
         }),
@@ -50853,7 +50854,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45487" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36881" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

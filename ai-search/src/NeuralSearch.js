@@ -66,7 +66,7 @@ const NeuralSearch = () => {
 
     setItemData(imageObject);
 
-  }
+  };
 
   return (
     <div class="search">

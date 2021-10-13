@@ -80,13 +80,6 @@ def query():
             feat = model(normd_img, label)
             img_embeddings = feat.detach().cpu().numpy()
 
-
-        #TBD: to be deleted after indexing endpoint finished
-        print(f"\n type of embeddings: {type(img_embeddings)}")
-        print(f"\n len of embeddings: {len(img_embeddings[0])} \n")
-        print(f"\n value of embeddings: {img_embeddings}\n")
-        print(f"\n shape of embeddings: {img_embeddings.shape}\n")
-
         embeddings = np.load(current_app.config['EMBEDDINGS'])
         _, d = embeddings.shape
 
@@ -107,9 +100,6 @@ def query():
                 "title": f'Image Index {i}',
                 "desc": "Demo Image"
                 })
-
-        print(f"\nType of topk_indexe[0]: {type(topk_indexes[0])}")
-        print(f"\n Top 10 indexes are: {list(topk_indexes[0])} \n")
 
         os.remove(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         
