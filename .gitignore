@@ -1,4 +1,6 @@
 venv/
+dl-env/
+faiss-env/
 thumbnails-env/
 ai-search/node_modules/
 ai-search/.cache/
