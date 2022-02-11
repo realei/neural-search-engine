@@ -2,14 +2,18 @@
 This tasks.py now is for exploring the Celery, later we need to
 re-define it
 """
-#import importlib
-#import logging
-from celery import Celery 
 
-#from .worker import app
-
-app = Celery('tasks', broker='amqp://guest@localhost//')
+from __future__ import absolute_import, unicode_literals
+from .celery import app
 
 @app.task
 def add(x, y):
     return x + y
+
+@app.task
+def mul(x, y):
+    return x * y
+
+@app.task
+def xsum(numbers):
+    return sum(numbers)
