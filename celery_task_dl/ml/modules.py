@@ -2,7 +2,6 @@
 Deep Learning modules for feature extracting
 """
 
-import cv2
 import math
 import timm
 import torch

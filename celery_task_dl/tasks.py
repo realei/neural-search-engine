@@ -5,7 +5,7 @@ re-define it
 from __future__ import absolute_import, unicode_literals
 from .worker import app
 
-import cv2
+# import cv2
 import numpy as np
 from PIL import Image
 from engine.modules import normalize_input, ImageModel, CFG
@@ -20,8 +20,11 @@ def feature_extraction(file):
     """
     TBD
     """
-    img = cv2.imread(file)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # img = cv2.imread(file)
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img_file = Image.open(file)
+    img = np.asarray(img_file)
 
 
     img_t = normalize_input(img)
