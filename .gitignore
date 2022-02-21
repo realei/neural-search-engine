@@ -18,6 +18,8 @@ web/instance/*
 *.swo
 *.jpg
 *.npy
+*.jpeg
+*.png
 __pycache__/
 
 instance/

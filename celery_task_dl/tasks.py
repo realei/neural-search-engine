@@ -6,9 +6,11 @@ from __future__ import absolute_import, unicode_literals
 from .worker import app
 
 # import cv2
+import os
 import numpy as np
+import torch
 from PIL import Image
-from engine.modules import normalize_input, ImageModel, CFG
+from ml.modules import normalize_input, ImageModel, CFG
 
 
 @app.task
@@ -16,13 +18,18 @@ def add(x, y):
     return x + y
 
 @app.task
-def feature_extraction(file):
+def feature_extraction(file_name, file_path="./upload"):
     """
     TBD
     """
 
     # img = cv2.imread(file)
     # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    file = os.path.join(
+        os.path.abspath(os.getcwd()),
+        "upload",
+        file_name
+    )
     img_file = Image.open(file)
     img = np.asarray(img_file)
 
@@ -51,6 +58,6 @@ def feature_extraction(file):
 
     with torch.no_grad():
         feat = model(normd_img, label)
-        img_embeddings = feat.detach().cpu().numpy()
+        embeddings_list = feat.detach().cpu().numpy().tolist()
 
-    return img_embeddings
+    return embeddings_list
