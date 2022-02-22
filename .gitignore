@@ -1,4 +1,6 @@
 venv/
+dl-env/
+faiss-env/
 thumbnails-env/
 ai-search/node_modules/
 ai-search/.cache/
@@ -16,6 +18,8 @@ web/instance/*
 *.swo
 *.jpg
 *.npy
+*.jpeg
+*.png
 __pycache__/
 
 instance/
