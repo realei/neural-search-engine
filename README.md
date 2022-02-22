@@ -25,3 +25,7 @@ After the first time release, the result shows the MVP version can help users to
 `flask run`   ---- 5000
 
 `flask run -h localhost -p 3000` --- 3000
+
+5. Bring up Celery's worker
+
+`celery -A celery_task_dl.worker worker -l info`
