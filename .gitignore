@@ -20,6 +20,7 @@ web/instance/*
 *.npy
 *.jpeg
 *.png
+*.npy
 __pycache__/
 
 instance/
