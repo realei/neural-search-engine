@@ -10,15 +10,15 @@ from .worker import app
 
 
 @app.task
-def faissIndexing(vector, embeddings_path="./embeddings", top_k=42):
+def faissIndexing(vector, embeddings_path="./celery_task_faiss/embeddings/embeddings.npy", top_k=42):
     """
     TBD
     """
-    if not vector:
+    if vector:
         feature_vector = np.array(vector)
     else:
         raise ValueError(
-            f"ValueError exception thrown, because input feature vecgtor: {vector}"
+            f"ValueError exception thrown, because input feature vector: {vector}"
         )
 
     embeddings = np.load(embeddings_path)
@@ -28,7 +28,7 @@ def faissIndexing(vector, embeddings_path="./embeddings", top_k=42):
     index = faiss.IndexFlatL2(d)
     index.add(embeddings)
 
-    _, topk_indexes = index.search(img_embeddings, top_k)
+    _, topk_indexes = index.search(feature_vector, top_k)
     topk_list = list(topk_indexes[0])
 
     result = []
