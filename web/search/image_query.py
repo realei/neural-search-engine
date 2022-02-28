@@ -87,7 +87,7 @@ def query():
         index = faiss.IndexFlatL2(d)
         index.add(embeddings)
 
-        top_k = 42 
+        top_k = 42
 
         _, topk_indexes = index.search(img_embeddings, top_k)
         topk_list = list(topk_indexes[0])
@@ -102,7 +102,7 @@ def query():
                 })
 
         os.remove(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-        
+
         return json.dumps(result)
 
 @bp.route('/index/<int:top_k>', methods=['GET'])
