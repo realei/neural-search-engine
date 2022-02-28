@@ -5,6 +5,7 @@ re-define it
 from __future__ import absolute_import, unicode_literals
 import faiss
 import numpy as np
+import json
 
 from .worker import app
 
@@ -15,7 +16,8 @@ def faissIndexing(vector, embeddings_path="./celery_task_faiss/embeddings/embedd
     TBD
     """
     if vector:
-        feature_vector = np.array(vector)
+        # Faiss only accept `float32`
+        feature_vector = np.array(vector, dtype='f4')
     else:
         raise ValueError(
             f"ValueError exception thrown, because input feature vector: {vector}"
