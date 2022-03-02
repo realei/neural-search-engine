@@ -12,6 +12,7 @@ from werkzeug.utils import secure_filename
 sys.path.append("../..")
 from celery_task_faiss.tasks import faissIndexing
 from celery_task_dl.tasks import feature_extraction
+from celery.result import AsyncResult
 
 bp = Blueprint('image_query', __name__, url_prefix='/image')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -44,9 +45,28 @@ def query():
 
         # Call Celery async tasks
         res = feature_extraction.delay(filename)
+        while True:
+	        _result1 = AsyncResult(res.task_id)
+	        status = _result1.status
+	        print(status)
+	        if 'SUCCESS' in status:
+		        print('result after 5 sec wait {_result1}'.format(_result1=_result1.get()))
+		        break
+	        time.sleep(1)
+
         feature_vectors = res.get()[0]
 
         top_k = faissIndexing.delay(vectors)
+
+        while True:
+	        _result1 = AsyncResult(top_k.task_id)
+	        status = _result1.status
+	        print(status)
+	        if 'SUCCESS' in status:
+		        print('result after 5 sec wait {_result1}'.format(_result1=_result1.get()))
+		        break
+	        time.sleep(1)
+
         result = top_k.get()[0]
 
         return result
