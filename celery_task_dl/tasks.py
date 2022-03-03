@@ -18,7 +18,7 @@ def add(x, y):
     return x + y
 
 @app.task
-def feature_extraction(file_name, file_path="./upload"):
+def feature_extraction(file_name, file_path="./uploads"):
     """
     TBD
     """
