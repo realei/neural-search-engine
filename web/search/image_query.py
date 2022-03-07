@@ -1,9 +1,6 @@
-import torch
 import json
-import faiss
 import sys
 import os
-import cv2
 from flask_cors import CORS
 from flask import (
     Blueprint, flash, g, redirect, request, url_for, current_app
@@ -12,12 +9,10 @@ from flask import (
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 
-import numpy as np
-from PIL import Image
-
 sys.path.append("..")
-from engine.modules import normalize_input, ImageModel, CFG
-
+from celery_task_faiss.tasks import faissIndexing
+from celery_task_dl.tasks import feature_extraction
+from celery.result import AsyncResult
 
 bp = Blueprint('image_query', __name__, url_prefix='/image')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -48,62 +43,33 @@ def query():
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('download_file', name=filename))
 
-        #img = Image.open(file)  # PIL by default is RGB
-        #img = np.array(img)
-        img = cv2.imread(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        # Call Celery async tasks
+        res = feature_extraction.delay(filename)
+        while True:
+	        _result1 = AsyncResult(res.task_id)
+	        status = _result1.status
+	        print(status)
+	        if 'SUCCESS' in status:
+		        print('result after 5 sec wait {_result1}'.format(_result1=_result1.get()))
+		        break
+	        time.sleep(1)
 
+        feature_vectors = res.get()[0]
 
-        img_t = normalize_input(img)
-        normd_img = img_t["image"]
+        top_k = faissIndexing.delay(vectors)
 
-        normd_img = normd_img.astype(np.float32)
-        normd_img = normd_img.transpose(2,0,1)
+        while True:
+	        _result1 = AsyncResult(top_k.task_id)
+	        status = _result1.status
+	        print(status)
+	        if 'SUCCESS' in status:
+		        print('result after 5 sec wait {_result1}'.format(_result1=_result1.get()))
+		        break
+	        time.sleep(1)
 
-        #print(f"shape of normd_img: {normd_img.shape}")
-        #print(f"\n Value of normd_img[2][511]: {normd_img[2][511]} \n")
-        normd_img = np.expand_dims(normd_img, axis=0)
-        normd_img = torch.tensor(normd_img).float()
+        result = top_k.get()[0]
 
-        #print(normd_img.shape)
-
-        #normd_img = normd_img.transpose(2,0,1)
-
-        model = ImageModel(model_name=CFG.model_name, pretrained=True)
-        model.eval()
-        model.to(CFG.device)
-
-        # Inference dont need label
-        label = torch.tensor(1).int()
-
-        with torch.no_grad():
-            feat = model(normd_img, label)
-            img_embeddings = feat.detach().cpu().numpy()
-
-        embeddings = np.load(current_app.config['EMBEDDINGS'])
-        _, d = embeddings.shape
-
-        #Build the index
-        index = faiss.IndexFlatL2(d)
-        index.add(embeddings)
-
-        top_k = 42
-
-        _, topk_indexes = index.search(img_embeddings, top_k)
-        topk_list = list(topk_indexes[0])
-
-        result = []
-        for i in topk_list:
-            result.append({
-                "index": topk_list.index(i),
-                "img": f'https://storage.googleapis.com/neural-search-prod/{i}.jpg',
-                "title": f'Image Index {i}',
-                "desc": "Demo Image"
-                })
-
-        os.remove(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-
-        return json.dumps(result)
+        return result
 
 @bp.route('/index/<int:top_k>', methods=['GET'])
 def index(top_k):
