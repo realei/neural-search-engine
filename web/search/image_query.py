@@ -1,6 +1,7 @@
 import json
 import sys
 import os
+import time
 from flask_cors import CORS
 from flask import (
     Blueprint, flash, g, redirect, request, url_for, current_app
@@ -45,27 +46,36 @@ def query():
 
         # Call Celery async tasks
         res = feature_extraction.delay(filename)
+
+        cnt = 0
         while True:
-	        _result1 = AsyncResult(res.task_id)
-	        status = _result1.status
-	        print(status)
-	        if 'SUCCESS' in status:
-		        print('result after 5 sec wait {_result1}'.format(_result1=_result1.get()))
-		        break
-	        time.sleep(1)
+            cnt += 1
+            status = res.status
+            print(status)
+            if 'SUCCESS' in status:
+                print('Feature Extraction task is done!')
+                break
+            time.sleep(1)
+            if cnt > 10:
+                flash('Failed with Feature Extraction task')
+                return redirect(request.url)
 
-        feature_vectors = res.get()[0]
+        feature_vectors = res.get()
 
-        top_k = faissIndexing.delay(vectors)
+        top_k = faissIndexing.delay(feature_vectors)
 
+        cnt = 0
         while True:
-	        _result1 = AsyncResult(top_k.task_id)
-	        status = _result1.status
-	        print(status)
-	        if 'SUCCESS' in status:
-		        print('result after 5 sec wait {_result1}'.format(_result1=_result1.get()))
-		        break
-	        time.sleep(1)
+            cnt += 1
+            status = top_k.status
+            print(status)
+            if 'SUCCESS' in status:
+                print('Faiss Indexing is done!')
+                break
+            time.sleep(1)
+            if cnt > 10:
+                flash('Failed with Faiss Indexing task')
+                return redirect(request.url)
 
         result = top_k.get()[0]
 
