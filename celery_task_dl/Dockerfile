@@ -1,4 +1,4 @@
-FROM eu.gcr.io/neural-search-prod/faiss:1.7.1
+FROM realei/neural-search:faiss-base 
 
 WORKDIR /usr/src/ai-search
 
