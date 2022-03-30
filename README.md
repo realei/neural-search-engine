@@ -43,7 +43,7 @@ After the first time release, the result shows the MVP version can help users to
 `files={'files': open(~/test.jpg,'rb')}`
 `r=requests.post(url,files=files)`
 
-
 ## GCP: Quickstart for Container Registry
 
 [Quickstart for Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
+
