@@ -29,3 +29,7 @@ After the first time release, the result shows the MVP version can help users to
 5. Bring up Celery's worker
 
 `celery -A celery_task_dl.worker worker -l info`
+
+## GCP: Quickstart for Container Registry
+
+[Quickstart for Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
