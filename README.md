@@ -30,6 +30,20 @@ After the first time release, the result shows the MVP version can help users to
 
 `celery -A celery_task_dl.worker worker -l info`
 
+*faiss is the same*
+
+6. Bring up docker redis service
+
+`docker run -d -p 6379:6379 redis`
+
+
+## Manually POST to url
+
+`import requests`
+`files={'files': open(~/test.jpg,'rb')}`
+`r=requests.post(url,files=files)`
+
+
 ## GCP: Quickstart for Container Registry
 
 [Quickstart for Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
