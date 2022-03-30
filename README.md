@@ -30,6 +30,8 @@ After the first time release, the result shows the MVP version can help users to
 
 `celery -A celery_task_dl.worker worker -l info`
 
+*faiss is the same*
+
 6. Bring up docker redis service
 
 `docker run -d -p 6379:6379 redis`
