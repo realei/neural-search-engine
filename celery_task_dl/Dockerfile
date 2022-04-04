@@ -7,9 +7,9 @@ RUN groupadd -r ai-search && useradd -r -g ai-search ai-search
 
 # create the appropriate directories
 # ENV HOME=/home/ai-search
-ENV HOME=/home/ai-search/web
+ENV HOME=/home/ai-search/celery_task_dl
 RUN mkdir -p $HOME
-RUN mkdir $HOME/instance
+RUN mkdir $HOME/uploads
 
 # set environment variables:
 # Prevents Python from writing pyc files to disc (python3 -B)
