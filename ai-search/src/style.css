@@ -1,21 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;700&display=swap');
 * {
   box-sizing: border-box;
   color: #333;
 }
 
 body {
-  background-color: #81a69b;
-  background-image: url(https://storage.googleapis.com/neural-search-prod/magnifier.jpg);
+  background-color: #ffffff;
+  /*background-image: url(https://storage.googleapis.com/neural-search-prod/magnifier.jpg);*/
   margin: 0;
   background-size: cover;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Lato', sans-serif;
   box-sizing: 100% 100%;
+}
+
+header {
+  text-align: center;
+    background-color: #088cc3;
+    color: #f3f3f3;
+    text-decoration: none;
+    font-weight: bolder;
+    padding: 20px;
+}
+
+header a, header h1 { 
+  color: #f3f3f3!important;
+  text-decoration: none;
 }
 
 .search {
   position: static;
+  text-align: center;
+  background:#161919;
+  
+    border-top: 3px solid #f2f2f2;
+
   /* top: 40%;
   bottom: 40%;
   left: 10%;
   right: 10%; */
+}
+
+#fname {
+    height: 40px;
+    width: 50%;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: none;
+    border-bottom: 3px solid #ea942d;
+    margin-right: 1%;
+    color: #161919;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 20px;
+    display:none;
+}
+
+#icon-button-file {
+
+}
+
+.MuiIconButton-root {
+  background: #ea942d!important;
+  color: #fff;
+  margin-top: 30px!important;
+  width: 80px;
+  height: 76px;
+}
+
+.MuiSvgIcon-root {
+  fill: #fff!important;
+}
+
+.makeStyles-root-3 {
+  background-image: none!important;
+  background-color: #ffffff;
+  margin-top: 20px;
+}
+
+.MuiImageListItem-root {
+  width:50%!important;
+}
+
+.MuiImageListItemBar-title, .MuiImageListItemBar-subtitle,
+.MuiImageListItemBar-subtitle span {
+  color:#ffffff!important;
 }

@@ -61,7 +61,7 @@ const NeuralSearch = () => {
       body: data,
     };
 
-    const res = await fetch(`https://www.neuralsearch.tech/image/query`, fetchData);
+    const res = await fetch(`https://imagesearchstage.toorbee.com/image/query`, fetchData);
     const imageObject = await res.json();
 
     setItemData(imageObject);
