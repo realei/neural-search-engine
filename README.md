@@ -47,3 +47,7 @@ After the first time release, the result shows the MVP version can help users to
 
 [Quickstart for Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
 
+
+## Reference 
+
+### [Autoscaling workloads with Celery and Kubernetes](https://miguescri.com/post/2021-05-22-celery-hpa/)
