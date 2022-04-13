@@ -53,3 +53,5 @@ After the first time release, the result shows the MVP version can help users to
 ### [Autoscaling workloads with Celery and Kubernetes](https://miguescri.com/post/2021-05-22-celery-hpa/)
 
 ### [Dockerize a Flask, Celery, and Redis Application with Docker Compose](https://nickjanetakis.com/blog/dockerize-a-flask-celery-and-redis-application-with-docker-compose)
+
+### [5 tips for writing production-ready Celery tasks](https://blog.wolt.com/engineering/2021/09/15/5-tips-for-writing-production-ready-celery-tasks/)
