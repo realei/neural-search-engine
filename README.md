@@ -48,7 +48,9 @@ After the first time release, the result shows the MVP version can help users to
 [Quickstart for Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
 
 
-## Reference 
+## Reference
+
+### **The best one** [Django + Celery in Kubernetes for Scheduling Tasks](https://blog.devgenius.io/django-celery-in-kubernetes-for-scheduling-tasks-12718ef38bce)
 
 ### [Autoscaling workloads with Celery and Kubernetes](https://miguescri.com/post/2021-05-22-celery-hpa/)
 
