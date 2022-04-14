@@ -32,8 +32,6 @@ COPY ./entrypoint.sh $HOME
 
 # copy project
 COPY . $HOME
-#COPY ./search $HOME
-#COPY ./engine $HOME 
 
 
 # chown all the files to the ai-search user
