@@ -57,3 +57,5 @@ After the first time release, the result shows the MVP version can help users to
 ### [Dockerize a Flask, Celery, and Redis Application with Docker Compose](https://nickjanetakis.com/blog/dockerize-a-flask-celery-and-redis-application-with-docker-compose)
 
 ### [5 tips for writing production-ready Celery tasks](https://blog.wolt.com/engineering/2021/09/15/5-tips-for-writing-production-ready-celery-tasks/)
+
+### [Reducing docker size with PyTorch model](https://discuss.pytorch.org/t/reducing-docker-size-with-pytorch-model/78991)
