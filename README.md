@@ -59,3 +59,7 @@ After the first time release, the result shows the MVP version can help users to
 ### [5 tips for writing production-ready Celery tasks](https://blog.wolt.com/engineering/2021/09/15/5-tips-for-writing-production-ready-celery-tasks/)
 
 ### [Reducing docker size with PyTorch model](https://discuss.pytorch.org/t/reducing-docker-size-with-pytorch-model/78991)
+
+### [EXPORTING A MODEL FROM PYTORCH TO ONNX AND RUNNING IT USING ONNX RUNTIME](https://pytorch.org/tutorials/advanced/super_resolution_with_onnxruntime.html)
+
+### [TORCH.ONNX](https://pytorch.org/docs/master/onnx.html)
